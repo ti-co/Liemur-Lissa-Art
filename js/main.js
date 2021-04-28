@@ -244,7 +244,7 @@ const context = {
       posterImage: "./resources/video/posterSamuiLR.jpg" 
     },
     {
-      image: "./resources/video/Winter in China.mp4",
+      image: "./resources/video/WinterInChina.mp4",
       iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc?autoplay=1", 
       posterImage: "./resources/video/posterwinterinChina2LR.jpg"
     },
