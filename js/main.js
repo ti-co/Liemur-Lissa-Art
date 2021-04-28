@@ -229,7 +229,7 @@ const context = {
   ],
   videos: [
     {
-      image: "https://media.githubusercontent.com/media/ti-co/Liemur-Lissa-Art/master/resources/video/UnchartedThailand.mp4",
+      image: "https://media.githubusercontent.com/media/ti-co/Liemur-Lissa-Art/main/resources/video/sunpursuit.mp4",
       iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM?autoplay=1", 
       posterImage: './resources/video/postersunpursuit2LR.jpg'
     },
