@@ -137,7 +137,7 @@ const context = {
       medium: 'wooden frame'
     },
     {
-      image: "./resources/horizontalPaintings/whispers.jpg",  
+      image: "./resources/horizontalPaintings/whisper.JPG",  
       title: 'Whisper',
       artist: 'Liemur Lissa',
       date: '2021', 
