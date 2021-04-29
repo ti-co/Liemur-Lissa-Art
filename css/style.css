@@ -241,8 +241,9 @@ html {
 }
 
 #introvideo {
-    width: 275%; 
-    transform: scaleY(1.2); 
+    width: 275%;
+    height: 120%; 
+    transform: scaleY(1.2);
     margin-left:-92%;
 }
 
@@ -456,9 +457,16 @@ footer .content {
     }
 
     #introvideo {
+      z-index: -99;
       width: 115%;
       margin-left: -15%;
       margin-top:-12% 
+    }
+
+    #introvideo iframe {
+      position: relative; 
+      left: 0; 
+      top: 0; 
     }
 
 }
