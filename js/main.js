@@ -161,7 +161,7 @@ const context = {
   ],
   paintings2: [
     {
-      image: "./resources/verticalPaintings/lightinthedarkness.JPG", 
+      image: "./resources/verticalPaintings/lightinthedarkness.jpg", 
       title: `Light in the Darkness`,
       artist: 'Liemur Lissa',
       date: '2020', 
@@ -230,27 +230,27 @@ const context = {
   videos: [
     {
       image: "./resources/video/sunpursuit.mp4",
-      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM?autoplay=1", 
+      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM?autoplay=1&VQ=HD1080&rel=0&modestbranding=1", 
       posterImage: './resources/video/postersunpursuit2LR.jpg'
     },
     {
       image: "./resources/video/feelthailand.mp4", 
-      iframeSrc: "https://www.youtube.com/embed/AyH2CgOMSs0?autoplay=1",
+      iframeSrc: "https://www.youtube.com/embed/AyH2CgOMSs0?autoplay=1&VQ=HD1080&rel=0&modestbrand",
       posterImage: "./resources/video/posterfeelThailand3.jpg" 
     },
     {
       image: "./resources/video/Samuimylove.mp4", 
-      iframeSrc: "https://www.youtube.com/embed/Ph7jJ1j9tL8?autoplay=1",
+      iframeSrc: "https://www.youtube.com/embed/Ph7jJ1j9tL8?autoplay=1&VQ=HD1080&rel=0&modestbrand",
       posterImage: "./resources/video/posterSamuiLR.jpg" 
     },
     {
       image: "./resources/video/WinterInChina.mp4",
-      iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc?autoplay=1", 
+      iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc?autoplay=1&VQ=HD1080&rel=0&modestbrand", 
       posterImage: "./resources/video/posterwinterinChina2LR.jpg"
     },
     {
       image: "./resources/video/UnchartedThailand.mp4", 
-      iframeSrc: "https://www.youtube.com/embed/HV5GHrjlAKc?autoplay=1",
+      iframeSrc: "https://www.youtube.com/embed/HV5GHrjlAKc?autoplay=1&VQ=HD1080&rel=0&modestbrand",
       posterImage: "./resources/video/posterThailandunchartedLR.jpg"
     }
   ]
@@ -359,6 +359,8 @@ function showSlides(slideIndex, cardIndex, slider, array) {
         const iframe = document.createElement('iframe');
         videoBox.append(iframe);
         iframe.setAttribute("src","");
+        iframe.setAttribute("width","1920");
+        iframe.setAttribute("height","1080");
         iframe.setAttribute("frameborder","0");
         iframe.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
         iframe.setAttribute("allowfullscreen","true");
