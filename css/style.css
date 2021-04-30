@@ -242,10 +242,17 @@ html {
 }
 
 #introvideo {
-    width: 275%;
-    height: 120%; 
-    transform: scaleY(1.2);
-    margin-left:-92%;
+  
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+#introvideo iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #logo { 
