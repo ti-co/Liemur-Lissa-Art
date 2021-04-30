@@ -242,17 +242,20 @@ html {
 }
 
 #introvideo {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
+    display: flex; 
+    z-index: -99; 
+    width: 200vw;
+    height: 0;
+    transform: scaleX(0.7);
+    margin-left: -160%;
+    margin-top: -50vh;
+    padding-bottom: 56.25%;
 }
+
 #introvideo iframe {
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top:0;
+    left: 0,  
 }
 
 #logo { 
@@ -373,7 +376,7 @@ footer .content {
     #introvideo {
       width: 200%; 
       transform: scaleY(1.25); 
-      margin-left:-50%;
+      margin-left:-75%;
     }
 
     .videoPage{
@@ -476,9 +479,6 @@ footer .content {
     }
 
     #introvideo iframe {      
-      position: absolute;
-      top:0;
-      left: 0;
       width: 100%;
       height: 100%;
     }
