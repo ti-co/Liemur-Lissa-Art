@@ -245,11 +245,12 @@ html {
     display: flex; 
     z-index: -99; 
     width: auto;
-    height: 120vh;
-    margin-left: -210%;
-    margin-top: -165%;
-    padding-bottom: 56.25%;
+    height: 130vh;
+    margin-left: -300%;
+    margin-top: -120%;
+ 
 }
+
 
 #introvideo iframe {
     position: absolute;
