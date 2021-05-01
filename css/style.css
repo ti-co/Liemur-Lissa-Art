@@ -246,8 +246,8 @@ html {
     z-index: -99; 
     width: auto;
     height: 120vh;
-    margin-left: -150%;
-    margin-top: -100%;
+    margin-left: -210%;
+    margin-top: -165%;
     padding-bottom: 56.25%;
 }
 
@@ -310,7 +310,7 @@ footer {
 footer .content {
     color: white;
     display: flex;
-    height: 5rem;
+    height: 4rem;
     align-items: center; 
     justify-content: space-evenly;
     font-size: .66rem;
