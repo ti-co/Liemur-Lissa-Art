@@ -425,18 +425,22 @@ const collapseAboutSection = (e) => {
   e = e || window.event;
   var target = e.target || e.srcElement;
   if (target.innerHTML === 'Read about me') {
-  target.innerHTML = 'Hide about me'; 
-  target.nextElementSibling.style.visibility = 'visible';
-  if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
-    document.getElementById('logo').style.display = 'none'
+    target.innerHTML = 'Hide about me'; 
+    target.nextElementSibling.style.display = 'flex';
+    target.nextElementSibling.style.visibility = 'visible';
+    if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
+      document.getElementById('logo').style.display = 'none'
+      } else {
+        target.nextElementSibling.style.width = '60%';
+      }
     } else {
-      target.nextElementSibling.style.width = '60%';
-    }
-  } else {
-  target.innerHTML = 'Read about me';
-  target.nextElementSibling.style.visibility = 'hidden';
-  document.getElementById('logo').style.display = 'block';
- }
+    target.innerHTML = 'Read about me';
+    if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
+      target.nextElementSibling.style.display = 'none';
+      }
+    target.nextElementSibling.style.visibility = 'hidden';
+    document.getElementById('logo').style.display = 'block';
+  }
 }
 
 

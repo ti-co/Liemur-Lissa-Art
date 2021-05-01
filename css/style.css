@@ -10,10 +10,10 @@ html {
 }
   
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-  .sliderTitle {
+.sliderTitle {
     font-size: 1.3rem;
 }
 
@@ -253,8 +253,8 @@ html {
 
 #introvideo iframe {
     position: absolute;
-    height: 360; 
-    width: 640; 
+    height: 900; 
+    width: 1600; 
 }
 
 #logo { 
@@ -262,52 +262,58 @@ html {
     animation: textAppear 7s ease 600ms forwards;
   }
   
-  @keyframes textAppear {
-    0%   {opacity: 1;}
-    10%  {opacity: 0.1;}
-    15%  {opacity: 0.05;}
-    20%  {opacity: 0.1;}
-    100% {opacity: 1;}
-  }
-
-  .about {
-    opacity: 0; 
-    animation: aboutAppears 4s ease 800ms forwards;
-  }
-
-  @keyframes aboutAppears {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  .animationThree {
-    opacity: 0; 
-    animation: textAppearsthree 6s ease 4000ms forwards;
-  }
-
-  #navbar {
-    opacity: 0; 
-    animation: textAppearsthree 6s ease 4000ms forwards; 
-  }
-
-  @keyframes textAppearsthree {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  } 
-
-  footer {
-    background-color: black;
-    padding: 1rem;
-    border-top: 2px solid white;
+@keyframes textAppear {
+  0%   {opacity: 1;}
+  10%  {opacity: 0.1;}
+  15%  {opacity: 0.05;}
+  20%  {opacity: 0.1;}
+  100% {opacity: 1;}
 }
-  
+
+.about {
+  opacity: 0; 
+  animation: aboutAppears 4s ease 800ms forwards;
+}
+
+#about-text {
+  visibility: hidden; 
+  display: none;
+}
+
+
+@keyframes aboutAppears {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.animationThree {
+  opacity: 0; 
+  animation: textAppearsthree 6s ease 4000ms forwards;
+}
+
+#navbar {
+  opacity: 0; 
+  animation: textAppearsthree 6s ease 4000ms forwards; 
+}
+
+@keyframes textAppearsthree {
+  from {opacity: 0;}
+  to {opacity: 1;}
+} 
+
+footer {
+  background-color: black;
+  padding: 1rem;
+  border-top: 2px solid white;
+}
+
 footer .content {
     color: white;
     display: flex;
-    height: 12vh;
+    height: 5rem;
     align-items: center; 
-    justify-content: space-between;
-    font-size: .75rem;
+    justify-content: space-evenly;
+    font-size: .66rem;
 }
 
 .videoPage {
@@ -377,12 +383,11 @@ footer .content {
       height: 130vh; 
       margin-left: -150%;
       margin-top: -30%;
-  }
-  
-  #introvideo iframe {
-      height: 720; 
-      width: 1280; 
-  }
+    }
+
+    #about-text {
+      display: flex;
+    }
 
     .videoPage{
         height: 75vh;
@@ -392,11 +397,16 @@ footer .content {
         width: 640px; 
         height: 360px;
     }
+
+    footer .content {
+      height: 5rem;
+      font-size: 0.85rem;
+  }
 } 
 
 @media only screen and (max-width: 895px) {
     
-      .scrollbar {    
+    .scrollbar {    
       scrollbar-width: none; /* Firefox ? */
       -ms-overflow-style: none; /* IE, Edge */
     } 
