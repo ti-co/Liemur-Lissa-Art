@@ -135,6 +135,7 @@ html {
     background-color: rgba(0,0,0,0);
     color: white;
     margin: auto;
+    width: auto; 
     max-width: 96%;
     height: auto;
     border: none;
@@ -142,9 +143,9 @@ html {
 }
 
 .modal-content img {
-    width: 100%; 
+    max-width: 100%; 
     height: auto;
-    max-height: 100vh;
+    max-height: 96vh;
 }
 
 .right {
@@ -337,17 +338,15 @@ footer .content {
     .modal-content {
       width: auto;
       align-items: space-between; 
-      background-color: rgba(0,0,0,0);
-      color: white;
+  
     }
 
     .modal-content img {
-      padding: 1.5%;
+      padding: 1%;
       background-color: black;
-      height:auto;
-      max-height: 94vh;
-      width: auto;
-      max-width: 74%;
+      height: auto; 
+      width: auto; 
+      max-width: 90%;
       min-width: 60%
     }
 
@@ -391,12 +390,12 @@ footer .content {
     }
 
     .videoPage{
-        height: 75vh;
+      height: 75vh;
     }
 
     .videoPage iframe {
-        width: 640px; 
-        height: 360px;
+      width: 640px; 
+      height: 360px;
     }
 
     footer .content {
@@ -460,14 +459,8 @@ footer .content {
       display: flex; 
     }
 
-    .modal-content {
-      min-width: 56vw;
-      max-width: 96vw;
-    }
-
     .modal-content img {
-      max-height: 96vh;
-      width: auto; 
+      max-height: 96vh; 
     }
 
     .modal-content h5 {
