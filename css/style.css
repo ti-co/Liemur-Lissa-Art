@@ -143,7 +143,7 @@ html {
 .modal-content img {
     width: 100%;
     height: auto;
-    max-height: 96vh; 
+    max-height: 96%; 
 }
 
 .right {
