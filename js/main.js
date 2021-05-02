@@ -871,8 +871,19 @@ for (j=0; j < sliders.length; j++) {
   zoomCard(j);  
 };
 
+const introvideo = document.getElementById('introvideo');
+document.addEventListener('scroll', function () {
+  isInViewport(introvideo) ? player.playVideo() : player.pauseVideo();
+  }); 
 
 
+
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (    
+      rect.bottom > -80
+  );
+}
 
 
  
