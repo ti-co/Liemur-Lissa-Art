@@ -139,6 +139,10 @@ html {
     border-radius: 7px; 
 }
 
+.modal-content img { 
+  width: 98%;
+
+}
 
 
 .right {
