@@ -140,11 +140,9 @@ html {
 }
 
 .modal-content img {
-    width: 98%;
-    height: 100%;
-    max-height: 100%; 
-    max-width: 100%; 
-
+    width: 98vw;
+    height: auto !important; 
+    max-height: 94vh; 
 }
 
 
