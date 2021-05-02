@@ -132,7 +132,6 @@ html {
 
 /* Modal Content */
 .modal-content {
-    display: block; 
     background-color: rgba(0,0,0,0);
     color: white;
     margin: auto;
@@ -140,11 +139,10 @@ html {
     border-radius: 7px; 
 }
 
-.modal-content img {
-    display: block;
+.modal-content img { 
     width: 98vw;
     height: auto !important; 
-    max-height: 94vh; 
+     
 }
 
 .right {
