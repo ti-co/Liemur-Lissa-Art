@@ -134,17 +134,17 @@ html {
 .modal-content {
     background-color: rgba(0,0,0,0);
     color: white;
-    width: 98vw; 
     margin: auto;
     border: none;
     border-radius: 7px; 
 }
 
 .modal-content img {
-    width: 100%;
+    width: 98%;
     height: auto;
-    max-height: 96%; 
+    max-height: 94vh; 
 }
+
 
 .right {
     display: none;
@@ -331,7 +331,6 @@ footer .content {
     .modal-content {
       width: auto;
       align-items: space-between; 
-  
     }
 
     .modal-content img {
