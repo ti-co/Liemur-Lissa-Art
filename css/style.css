@@ -134,13 +134,16 @@ html {
 .modal-content {
     background-color: rgba(0,0,0,0);
     color: white;
+    width: 98vw; 
     margin: auto;
     border: none;
     border-radius: 7px; 
 }
 
 .modal-content img {
-    width: 98vw;
+    width: 100%;
+    height: auto;
+    max-height: 96vh; 
 }
 
 .right {
