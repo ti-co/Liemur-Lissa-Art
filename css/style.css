@@ -139,11 +139,16 @@ html {
     border-radius: 7px; 
 }
 
-.modal-content img { 
-    width: 98vw;
-    display: flex;
+.modal-image-wrapper {
+  display: block;
+  text-align: center;
+   
 }
 
+.modal-content img { 
+    max-width: 96vw;
+    max-height: 96vh;   
+}
 
 .right {
     display: none;
@@ -154,6 +159,7 @@ html {
     border-left: 1px solid white;
     padding: 3%;
     font-size: 0.65rem;
+    text-align: start;
 }
 
 .close {
@@ -322,7 +328,7 @@ footer .content {
     height: auto;
 }
 
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 560px){
     .slide {
       width: 32%;  
     }
@@ -330,6 +336,11 @@ footer .content {
     .modal-content {
       width: auto;
       align-items: space-between; 
+    }
+
+    .modal-image-wrapper {
+      display: flex;
+      justify-content: space-between; 
     }
 
     .modal-content img {

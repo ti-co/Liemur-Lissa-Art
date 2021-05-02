@@ -285,7 +285,7 @@ const modalContent = document.getElementById('modal-content');
 var crosses = document.getElementsByClassName("close");
 const popup = document.getElementsByClassName("popuptext");
 
-const z = window.matchMedia("(min-width: 600px)");
+const z = window.matchMedia("(min-width: 560px)");
 const y = window.matchMedia("(max-width: 895px)");
 const x = window.matchMedia("(min-width: 895px)");
 
