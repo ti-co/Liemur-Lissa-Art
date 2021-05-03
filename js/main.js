@@ -896,6 +896,14 @@ function scrollTo() {
 		}
 	}
 }
+
+document.addEventListener('click', function(e) {
+	event = e || window.e;
+    var target = e.target || e.srcElement;
+    var respond = document.getElementById('respond-link');
+	if (e.target.classList.contains('scroll-smooth')) scrollAnchors(e, respond);
+});
+
 function scrollAnchors(e, respond = null) {
 	const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
 	e.preventDefault();
