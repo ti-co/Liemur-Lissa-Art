@@ -904,7 +904,7 @@ function scrollAnchors(e, respond = null) {
 	if (!targetAnchor) return;
 	const originalTop = distanceToTop(targetAnchor);
   const eAmt = originalTop / 100;
-  const time = 2000; 
+  const time = 600; 
   let curTime = 0;
   while (curTime <= time) {
       window.setTimeout( () => { 
