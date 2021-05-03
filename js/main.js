@@ -909,7 +909,7 @@ function scrollAnchors(e, respond = null) {
   setTimeout( () => {
     while (curTime <= time) {
       window.setTimeout( () => { 
-        window.scrollBy(0, eAmt);
+        window.scrollTo(0, eAmt);
       }, curTime);
       curTime += time / 100;
   }
