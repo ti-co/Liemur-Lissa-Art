@@ -904,14 +904,25 @@ function scrollAnchors(e, respond = null) {
 	if (!targetAnchor) return;
 	const originalTop = distanceToTop(targetAnchor);
   const eAmt = originalTop / 100;
-  const time = 600; 
+  const time = 800; 
   let curTime = 0;
-  while (curTime <= time) {
+  setTimeout( () => {
+    while (curTime <= time) {
       window.setTimeout( () => { 
         window.scrollBy(0, eAmt);
       }, curTime);
       curTime += time / 100;
   }
+  }, 100);
+  const checkIfDone = setInterval(function() {
+    const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+    if (distanceToTop(targetAnchor) === 0 || atBottom) {
+      targetAnchor.tabIndex = '-1';
+      targetAnchor.focus();
+      window.history.pushState('', '', targetID);
+      clearInterval(checkIfDone);
+    }
+  }, time);
 }
 
 
