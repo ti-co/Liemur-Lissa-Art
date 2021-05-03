@@ -903,8 +903,8 @@ function scrollAnchors(e, respond = null) {
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
 	const originalTop = distanceToTop(targetAnchor);
-  
-	window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
+  SmoothVerticalScrolling(originalTop, 500)
+	
 	const checkIfDone = setInterval(function() {
 		const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
 		if (distanceToTop(targetAnchor) === 0 || atBottom) {
@@ -916,12 +916,12 @@ function scrollAnchors(e, respond = null) {
 	}, 100);
 }
 
-function SmoothVerticalScrolling(originalT, time) {
-  var eTop = e.getBoundingClientRect().top;
-  var eAmt = eTop / 100;
+function SmoothVerticalScrolling(originalTop, time) {
+
+  var eAmt = originalTop / 100;
   var curTime = 0;
   while (curTime <= time) {
-      window.setTimeout(SVS_B, curTime, eAmt, where);
+      window.setTimeout(SVS_B, curTime, eAmt);
       curTime += time / 100;
   }
 }
