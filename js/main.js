@@ -902,8 +902,9 @@ function scrollAnchors(e, respond = null) {
 	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
-	const originalTop = distanceToTop(targetAnchor);
-	window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
+	const eTop = distanceToTop(targetAnchor);
+  SmoothVerticalScrolling(eTop, 500);
+
 	const checkIfDone = setInterval(function() {
 		const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
 		if (distanceToTop(targetAnchor) === 0 || atBottom) {
@@ -913,4 +914,17 @@ function scrollAnchors(e, respond = null) {
 			clearInterval(checkIfDone);
 		}
 	}, 100);
+}
+
+function SmoothVerticalScrolling(eTop, time) {
+  var eAmt = eTop / 100;
+  var curTime = 0;
+  while (curTime <= time) {
+      window.setTimeout(SVS_B, curTime, eAmt, where);
+      curTime += time / 100;
+  }
+}
+
+function SVS_B(eAmt) {
+      window.scrollBy(0, eAmt);
 }
