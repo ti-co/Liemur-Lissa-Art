@@ -918,14 +918,12 @@ function scrollAnchors(e, respond = null) {
 
 function SmoothVerticalScrolling(originalTop, time) {
 
-  var eAmt = originalTop / 100;
-  var curTime = 0;
+  const eAmt = originalTop / 100;
+  let curTime = 0;
   while (curTime <= time) {
-      window.setTimeout(SVS_B, curTime, eAmt);
+      window.setTimeout( () => { 
+        window.scrollBy(0, eAmt);
+      }, curTime);
       curTime += time / 100;
   }
-}
-
-function SVS_B(eAmt) {
-      window.scrollBy(0, eAmt);
 }
