@@ -912,7 +912,6 @@ function scrollAnchors(e, respond = null) {
       }, curTime);
       curTime += time / 100;
   }
-
 }
 
 
