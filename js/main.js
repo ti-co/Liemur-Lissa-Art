@@ -922,7 +922,7 @@ function scrollAnchors(e, respond = null) {
       window.history.pushState('', '', targetID);
       clearInterval(checkIfDone);
     }
-  }, time);
+  }, time + 150);
 }
 
 
