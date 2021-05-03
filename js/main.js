@@ -896,23 +896,15 @@ function scrollTo() {
 		}
 	}
 }
-
-document.addEventListener('click', function(e) {
-	event = e || window.e;
-    var target = e.target || e.srcElement;
-    var respond = document.getElementById('respond-link');
-	if (e.target.classList.contains('scroll-smooth')) scrollAnchors(e, respond);
-});
-
 function scrollAnchors(e, respond = null) {
 	const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
 	e.preventDefault();
 	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
-	const eTop = distanceToTop(targetAnchor);
-  SmoothVerticalScrolling(eTop, 500);
-
+	const originalTop = distanceToTop(targetAnchor);
+  
+	window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
 	const checkIfDone = setInterval(function() {
 		const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
 		if (distanceToTop(targetAnchor) === 0 || atBottom) {
@@ -924,7 +916,8 @@ function scrollAnchors(e, respond = null) {
 	}, 100);
 }
 
-function SmoothVerticalScrolling(eTop, time) {
+function SmoothVerticalScrolling(originalT, time) {
+  var eTop = e.getBoundingClientRect().top;
   var eAmt = eTop / 100;
   var curTime = 0;
   while (curTime <= time) {
