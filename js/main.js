@@ -1,4 +1,3 @@
-
 const source = document.getElementById('projectsTemp').innerHTML;
 const template = Handlebars.compile(source);
 
@@ -678,6 +677,7 @@ function slidePlus (num, index) {
 
   function slideRight(num) {
     timestamp = new Date().getTime();
+    console.log(timestamp);
     if (start === undefined) {start = timestamp};
     const fraction = 100/l;
     if (dist === undefined) {dist = fraction*num};
@@ -889,31 +889,59 @@ function isInViewport(element) {
 scrollTo();
 function scrollTo() {
 	var links = document.getElementsByTagName('a');
-	for (var i = 0; i < links.length; i++) {
-		var link = links[i];
+	for (let i = 0; i < links.length; i++) {
+		const link = links[i];
 		if ((link.href && link.href.indexOf('#') != -1) && ((link.pathname == location.pathname) || ('/' + link.pathname == location.pathname)) && (link.search == location.search)) {
 			link.onclick = scrollAnchors;
 		}
 	}
 }
+
 function scrollAnchors(e, respond = null) {
-	const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+	let distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
 	e.preventDefault();
 	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
-	const originalTop = distanceToTop(targetAnchor);
-  const eAmt = originalTop / 100;
-  const time = 1500; 
-  let curTime = 0;
-  setTimeout( () => {
-    while (curTime <= time) {
-      window.setTimeout( () => { 
-        window.scrollTo(0, eAmt);
-      }, curTime);
-      curTime += time / 100;
+	const scrollDist = distanceToTop(targetAnchor);
+  console.log(scrollDist)  
+ 
+  window.requestAnimationFrame(() => {
+    scrollSmooth(scrollDist)  
+  });
+  
+  function scrollSmooth(scrollDist) {
+    timestamp = new Date().getTime();
+    if (start === undefined) {start = timestamp};
+    if (dist === undefined) {dist = scrollDist};
+    const scrollDur = 800; 
+    let factor = dist/scrollDur;
+    console.log(factor);
+    let elapsed = timestamp - start;
+    if (dist > 0) {
+      window.scrollBy({
+        top: factor*20,
+        left: 0,
+        scrollBehavior: 'smooth'
+      });
+    } else {
+        window.scrollBy({
+          top: factor*20,
+          left: 0,
+        });
+      }
+    console.log(factor*elapsed);
+    let atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+    if (elapsed < scrollDur) {
+      requestAnimationFrame(scrollSmooth);
+    } else if (distanceToTop(targetAnchor) === 0 || elapsed > scrollDur) {
+        dist = undefined;
+        start = undefined;
+        console.log('scroll completed');
+      } else {
+          dist = undefined;
+          start = undefined;
+          console.log('scroll never completed');
+        }   
   }
-  }, 50);
 }
-
-
