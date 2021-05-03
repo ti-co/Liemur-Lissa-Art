@@ -886,10 +886,7 @@ function isInViewport(element) {
 }
 
 
-(function() {
-	scrollTo();
-})();
-
+scrollTo();
 function scrollTo() {
 	var links = document.getElementsByTagName('a');
 	for (var i = 0; i < links.length; i++) {
@@ -899,7 +896,6 @@ function scrollTo() {
 		}
 	}
 }
-
 function scrollAnchors(e, respond = null) {
 	const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
 	e.preventDefault();
