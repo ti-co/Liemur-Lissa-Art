@@ -903,22 +903,8 @@ function scrollAnchors(e, respond = null) {
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
 	const originalTop = distanceToTop(targetAnchor);
-  SmoothVerticalScrolling(originalTop, 500)
-	
-	const checkIfDone = setInterval(function() {
-		const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-		if (distanceToTop(targetAnchor) === 0 || atBottom) {
-			targetAnchor.tabIndex = '-1';
-			targetAnchor.focus();
-			window.history.pushState('', '', targetID);
-			clearInterval(checkIfDone);
-		}
-	}, 100);
-}
-
-function SmoothVerticalScrolling(originalTop, time) {
-
   const eAmt = originalTop / 100;
+  const time = 2000; 
   let curTime = 0;
   while (curTime <= time) {
       window.setTimeout( () => { 
@@ -926,4 +912,7 @@ function SmoothVerticalScrolling(originalTop, time) {
       }, curTime);
       curTime += time / 100;
   }
+
 }
+
+
