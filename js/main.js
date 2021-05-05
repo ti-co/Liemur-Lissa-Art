@@ -277,6 +277,7 @@ const q = sliders.length;
 const next = document.getElementsByClassName('next');
 const prev = document.getElementsByClassName('prev');
 const videoBox = document.getElementById('videoBox');
+const footer = document.getElementById('footer');
 
 // Get the modal elements
 var modal = document.getElementById("myModal");
@@ -290,7 +291,7 @@ const x = window.matchMedia("(min-width: 895px)");
 
 let start; 
 let dist;
-const duration = 600; 
+const duration = 1500; 
 let n = [];
 let m = []; 
 
@@ -672,19 +673,26 @@ function slidePlus (num, index) {
     return
   }
 
+  const easeOut = progress => Math.pow(--progress, 1) + 1;
   
-  const easeOut = progress => Math.pow(--progress, 1) + 1; 
+  function easeInOut(x) {
+    return x === 0
+    ? 0
+    : x === 1
+    ? 1
+    : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2
+    : (2 - Math.pow(2, -20 * x + 10)) / 2;
+    }
 
   function slideRight(num) {
     timestamp = new Date().getTime();
-    console.log(timestamp);
     if (start === undefined) {start = timestamp};
     const fraction = 100/l;
     if (dist === undefined) {dist = fraction*num};
     const f = Math.abs(dist/duration);
     let elapsed = timestamp - start;
     let progress = elapsed/duration;
-    const easing = easeOut(progress);
+    const easing = easeInOut(progress);
     const refactor = easing*f;
     slider.style.transform = 'translateX(-' + Math.min(refactor*elapsed, dist) + "%)";
     if (elapsed < duration) {
@@ -704,6 +712,18 @@ function slidePlus (num, index) {
     };
   }
 
+  function easeInOutElastic(x) {
+    const c5 = (2 * Math.PI) / 4.5;
+    
+    return x === 0
+      ? 0
+      : x === 1
+      ? 1
+      : x < 0.5
+      ? -(Math.pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5)) / 2
+      : (Math.pow(2, -20 * x + 10) * Math.sin((20 * x - 11.125) * c5)) / 2 + 1;
+    }
+
   function slideLeft(num) {
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
@@ -712,7 +732,7 @@ function slidePlus (num, index) {
     const f = Math.abs(dist/duration);
     let elapsed = timestamp - start;
     let progress = elapsed/duration;
-    const easing = easeOut(progress);
+    const easing = easeInOutElastic(progress);
     const refactor = easing*f;
     slider.style.transform = 'translateX(' + Math.min(dist+(refactor*elapsed), 0) + "%)";
     if (elapsed < duration) {
@@ -898,50 +918,62 @@ function scrollTo() {
 }
 
 function scrollAnchors(e, respond = null) {
+  let scrollDist; 
+  let progress;
+  let prevTime = 0; 
+  let currentLapse;
+  let refactor;
+  
+
 	let distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
 	e.preventDefault();
 	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
-	const scrollDist = distanceToTop(targetAnchor);
-  console.log(scrollDist)  
- 
+  const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
+  maxScrollDist < distanceToTop(targetAnchor) ? scrollDist = maxScrollDist : scrollDist = distanceToTop(targetAnchor);  
   window.requestAnimationFrame(() => {
-    scrollSmooth(scrollDist)  
+    scrollSmooth()  
   });
   
-  function scrollSmooth(scrollDist) {
+  function scrollSmooth(timestamp) { 
+    prevTime = timestamp;
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
     if (dist === undefined) {dist = scrollDist};
-    const scrollDur = 800; 
-    let factor = dist/scrollDur;
-    console.log(factor);
+    if (progress === undefined) {progress = 0};
+    const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4)), 300); 
     let elapsed = timestamp - start;
-    if (dist > 0) {
-      window.scrollBy({
-        top: factor*20,
-        left: 0,
-        scrollBehavior: 'smooth'
-      });
-    } else {
-        window.scrollBy({
-          top: factor*20,
-          left: 0,
-        });
-      }
-    console.log(factor*elapsed);
+    prevTime? currentLapse = timestamp - prevTime : currentLapse = 15 ; 
+    let factor = dist/scrollDuration*currentLapse; 
+    let progression = elapsed/scrollDuration;
+    const easing = easeInOut(progression);
+    refactor = factor*easing;    
+    dist > 0? f = Math.min(refactor, dist-progress) : f = Math.max(refactor, dist-progress); 
+    window.scrollBy({
+      top: f,
+      left: 0,
+    });
+    progress += f; 
     let atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-    if (elapsed < scrollDur) {
-      requestAnimationFrame(scrollSmooth);
-    } else if (distanceToTop(targetAnchor) === 0 || elapsed > scrollDur) {
+    let atTop = window.pageYOffset <= 0; 
+    let arrived;
+    let noMoreScroll;
+    dist > 0? arrived = distanceToTop(targetAnchor) <= 0 : arrived = distanceToTop(targetAnchor) >= 0; 
+    dist > 0? noMoreScroll = atBottom || arrived : canNotScrollFurther = atTop || arrived; 
+    if (Math.abs(dist) > Math.abs(progress) && !noMoreScroll) {
+      window.requestAnimationFrame (()=>{
+        scrollSmooth(timestamp);
+      });   
+    } else {
         dist = undefined;
         start = undefined;
-        console.log('scroll completed');
-      } else {
-          dist = undefined;
-          start = undefined;
-          console.log('scroll never completed');
-        }   
+        window.cancelAnimationFrame(scrollSmooth);
+      }   
   }
+
+  function easeInOut(x) {
+    return -(Math.cos(Math.PI * x) - 1) / 2;
+  }
+
 }
