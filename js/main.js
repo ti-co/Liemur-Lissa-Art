@@ -960,7 +960,7 @@ function scrollAnchors(e, respond = null) {
 	if (!targetAnchor) return;
   const navContent = document.getElementById('navbarSupportedContent');
   navHeight = navContent.offsetHeight;
-  scrollDist = distanceToTop(targetAnchor) + navHeight; 
+  scrollDist = distanceToTop(targetAnchor); 
   const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
   maxScrollDist < scrollDist ? scrollDist = maxScrollDist : scrollDist = scrollDist;
   window.requestAnimationFrame(() => {
@@ -976,8 +976,13 @@ function scrollAnchors(e, respond = null) {
     prevTime = timestamp;
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
-    if (dist === undefined) { dist = scrollDist}
-      
+    if (dist === undefined) {
+      scrollDist > 0? dist = scrollDist + 55: dist = scrollDist - 20;
+      if (!atBottom && scrollDist < 0) {dist -= 12}; 
+      if (y.matches) {
+        scrollDist > 0? dist = scrollDist + 20: dist = scrollDist + 7;
+        } 
+    };
     if (progress === undefined) {progress = 0};
     const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4)), 300); 
     let elapsed = timestamp - start;
