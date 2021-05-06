@@ -28,7 +28,7 @@
           {{#each paintings1}}
       	  <div class="card slide">
             <div class="image-wrapper" style="display: flex;">
-              <img src={{this.image}} class="card-img-top" alt="">
+              <img src={{this.image}} class="card-img-top" loading="lazy" alt="">
             </div> 
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
@@ -54,7 +54,7 @@
           {{#each paintings2}}
       	  <div class="card slide">
             <div class="image-wrapper" style="display: flex;">
-              <img src={{this.image}} class="card-img-top" alt="" >
+              <img src={{this.image}} class="card-img-top" loading="lazy" alt="" >
             </div> 
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
@@ -82,7 +82,7 @@
               <button type='button' class="btn" style='position:relative; border: solid 1px white; font-size:0.8rem; height:auto; background-color: black; color: white'><span> <i class="fa fa-play" style="font-size: 0.9rem;"></i> &nbsp; Watch Full Video  </span> </button>
             </div>
             <video width="100%" height="auto" style="background-color: black; display: flex; align-items:stretch; justify-content: center;" controls allowfullscreen preload="none" poster="">
-              <source type="video/mp4" src="">
+              <source type="video/mp4" src="" loading="lazy">
             Your browser does not support the video tag.
             </video>
             <div class="card-body text-white" style='display: none;'>
@@ -112,7 +112,7 @@
           {{#each paintings1}}
       	  <div class="card slide" style="border: 1px solid black">
             <div class="image-wrapper" style="display: flex; border: 1px solid black">
-              <img src={{this.image}} class="card-img-top" alt="">
+              <img src={{this.image}} class="card-img-top" loading="lazy" alt="">
             </div> 
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
@@ -189,7 +189,7 @@
 
     <div id='top' class="sticky-top" style="background-color: black;">
       <!-- Navbar Component -->
-      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark text-white sticky-top" style="background-color: black; border-bottom: 2px solid white;">
+      <nav id="navbar" class="navbar washere navbar-expand-lg navbar-dark text-white sticky-top" style="background-color:black; border-bottom: 2px solid white;">
         <a class="navbar-brand ml-1" href="">
           <span id="logoInNavbar" style="color: white;" >Liemur Lissa</span>
         </a>
@@ -208,13 +208,13 @@
           </i>
         </a>
        
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button id="navbutton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul id='navbar-nav' class="navbar-nav ml-auto">
-            <li class="nav-item ml-2 active">
+            <li class="nav-item ml-2 active" onclick="toggleNavButton()">
               <a class="nav-link scroll-smooth" href="#toptop">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ml-2">
@@ -223,8 +223,8 @@
             <li class="nav-item ml-2">
               <a class="nav-link" href="./pages/video.html">Video</a>
             </li>
-            <li class="nav-item ml-2">
-              <a class="nav-link scroll-smooth" href="#contact">Contact</a>
+            <li class="nav-item ml-2" onclick="toggleNavButton()">
+              <a class="nav-link scroll-smooth" href="#contact" >Contact</a>
             </li>
           </ul>
         </div>

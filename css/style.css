@@ -275,7 +275,10 @@ body {
 #about-text {
   visibility: hidden; 
   display: none;
+  font-size: 0.75rem;
 }
+
+
 
 
 @keyframes aboutAppears {
@@ -288,7 +291,7 @@ body {
   animation: textAppearsthree 6s ease 4000ms forwards;
 }
 
-#navbar {
+.navbar.washere {
   opacity: 0; 
   animation: textAppearsthree 6s ease 4000ms forwards; 
 }

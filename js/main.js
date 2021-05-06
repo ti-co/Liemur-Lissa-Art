@@ -259,6 +259,14 @@ const compiledHtml = template(context);
 const displayFrame = document.getElementById('frame');
 displayFrame.innerHTML = compiledHtml;
 
+let hasVisited = sessionStorage.getItem('washere');
+const navBar = document.getElementById('navbar');
+if (!hasVisited ) {
+  sessionStorage.setItem('washere', true);
+} else {
+  navBar.classList.remove('washere');
+  navBar.style.opacity = '1';
+}
 
 
 window.requestAnimationFrame = window.requestAnimationFrame
@@ -278,6 +286,7 @@ const next = document.getElementsByClassName('next');
 const prev = document.getElementsByClassName('prev');
 const videoBox = document.getElementById('videoBox');
 const footer = document.getElementById('footer');
+
 
 // Get the modal elements
 var modal = document.getElementById("myModal");
@@ -589,7 +598,18 @@ const setSliderWidth = () => {
     videoBox.style.width = `${positionSlideFive - widthLeft - 12}px`;
     spaceLeft = videoBox.getBoundingClientRect().x
     videoBox.style.marginLeft = `${widthLeft + 8 - spaceLeft}px`; 
-  }
+  } else {
+      logo.style.marginLeft = '';
+      const navbarNav = document.getElementById('navbar-nav');
+      navbarNav.style.marginRight = '';
+      const sliderTitels = document.getElementsByClassName('sliderTitle');
+      for (let i=0; i<q; i++) {
+        sliderTitels[i].style.marginLeft = '';
+      };
+      videoBox.style.width = '';
+      videoBox.style.marginLeft = ''; 
+    }
+
   videoBox.style.height = `${videoBox.offsetWidth*0.5625}px`;
   const jumboHeight = window.innerHeight - navBar.offsetHeight + 3;
   jumbo.style.height = `${jumboHeight}px`;
@@ -619,7 +639,7 @@ x.addEventListener("change", (e) => {
   showCard();
   setSliderWidth();
 });
-window.onresize = setSliderWidth();
+setSliderWidth();
 showCard();
 
 
@@ -906,6 +926,13 @@ function isInViewport(element) {
 }
 
 
+const toggleNavButton = () => {
+  if (y.matches) {
+    const navButton = document.getElementById('navbutton'); 
+    navButton.click();
+  }  
+}
+
 scrollTo();
 function scrollTo() {
 	var links = document.getElementsByTagName('a');
@@ -923,6 +950,7 @@ function scrollAnchors(e, respond = null) {
   let prevTime = 0; 
   let currentLapse;
   let refactor;
+  let navHeight;
   
 
 	let distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -930,17 +958,31 @@ function scrollAnchors(e, respond = null) {
 	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
+  const navContent = document.getElementById('navbarSupportedContent');
+  navHeight = navContent.offsetHeight;
+  scrollDist = distanceToTop(targetAnchor) + navHeight; 
   const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
-  maxScrollDist < distanceToTop(targetAnchor) ? scrollDist = maxScrollDist : scrollDist = distanceToTop(targetAnchor);  
+  maxScrollDist < scrollDist ? scrollDist = maxScrollDist : scrollDist = scrollDist;
   window.requestAnimationFrame(() => {
     scrollSmooth()  
   });
   
-  function scrollSmooth(timestamp) { 
+  function scrollSmooth(timestamp) {
+    let atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+    let atTop = window.pageYOffset <= 0; 
+    let arrived;
+    let noMoreScroll;
+
     prevTime = timestamp;
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
-    if (dist === undefined) {dist = scrollDist};
+    if (dist === undefined) {
+      scrollDist > 0? dist = scrollDist + 55: dist = scrollDist - 20;
+      if (!atBottom && scrollDist < 0) {dist -= 12}; 
+      if (y.matches) {
+        scrollDist > 0? dist = scrollDist + 20: dist = scrollDist + 7;
+        } 
+    };
     if (progress === undefined) {progress = 0};
     const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4)), 300); 
     let elapsed = timestamp - start;
@@ -955,12 +997,7 @@ function scrollAnchors(e, respond = null) {
       left: 0,
     });
     progress += f; 
-    let atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-    let atTop = window.pageYOffset <= 0; 
-    let arrived;
-    let noMoreScroll;
-    dist > 0? arrived = distanceToTop(targetAnchor) <= 0 : arrived = distanceToTop(targetAnchor) >= 0; 
-    dist > 0? noMoreScroll = atBottom || arrived : canNotScrollFurther = atTop || arrived; 
+    dist > 0? noMoreScroll = atBottom : noMoreScroll = atTop; 
     if (Math.abs(dist) > Math.abs(progress) && !noMoreScroll) {
       window.requestAnimationFrame (()=>{
         scrollSmooth(timestamp);
@@ -969,11 +1006,14 @@ function scrollAnchors(e, respond = null) {
         dist = undefined;
         start = undefined;
         window.cancelAnimationFrame(scrollSmooth);
+        navHeight = 0;
       }   
   }
 
   function easeInOut(x) {
     return -(Math.cos(Math.PI * x) - 1) / 2;
   }
-
 }
+
+
+
