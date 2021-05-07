@@ -960,7 +960,7 @@ function scrollAnchors(e, respond = null) {
 	if (!targetAnchor) return;
   const navContent = document.getElementById('navbarSupportedContent');
   navHeight = navContent.offsetHeight;
-  scrollDist = distanceToTop(targetAnchor) - navHeight; 
+  scrollDist = distanceToTop(targetAnchor); 
   const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
   maxScrollDist < scrollDist ? scrollDist = maxScrollDist : scrollDist = scrollDist;
   window.requestAnimationFrame(() => {
@@ -977,24 +977,30 @@ function scrollAnchors(e, respond = null) {
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
     if (dist === undefined) {dist = scrollDist
-      
+      scrollDist > 0? dist = scrollDist + 55: dist = scrollDist - 35;
     };
     if (progress === undefined) {progress = 0};
-    const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4)), 300); 
+    const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4))+300, 300); 
     let elapsed = timestamp - start;
     prevTime? currentLapse = timestamp - prevTime : currentLapse = 15 ; 
-    let factor = dist/scrollDuration*currentLapse; 
-    let progression = elapsed/scrollDuration;
-    const easing = easeInOut(progression);
-    refactor = factor*easing;    
-    dist > 0? f = Math.min(refactor, dist-progress) : f = Math.max(refactor, dist-progress); 
+    if (Math.abs(progress) < Math.abs(dist)) {
+      let factor = dist/scrollDuration*currentLapse; 
+      let progression = elapsed/scrollDuration;
+      const easing = easeInOut(progression);
+      refactor = factor*easing; 
+    } else {
+      refactor = dist/scrollDuration*15;
+    }
+       
+    dist > 0? f = Math.min(refactor, distanceToTop(targetAnchor)) : f = Math.max(refactor, distanceToTop(targetAnchor)); 
     window.scrollBy({
       top: f,
       left: 0,
     });
-    progress += f; 
+    progress += f;
+    dist>0? arrived = distanceToTop(targetAnchor) <= 0 : arrived = distanceToTop(targetAnchor) >= 0 ; 
     dist > 0? noMoreScroll = atBottom : noMoreScroll = atTop; 
-    if (Math.abs(dist) > Math.abs(progress) && !noMoreScroll) {
+    if (!arrived && !noMoreScroll) {
       window.requestAnimationFrame (()=>{
         scrollSmooth(timestamp);
       });   
@@ -1003,6 +1009,7 @@ function scrollAnchors(e, respond = null) {
         start = undefined;
         window.cancelAnimationFrame(scrollSmooth);
         navHeight = 0;
+        console.log('completed');
       }   
   }
 
