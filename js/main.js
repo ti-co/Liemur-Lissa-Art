@@ -259,16 +259,6 @@ const compiledHtml = template(context);
 const displayFrame = document.getElementById('frame');
 displayFrame.innerHTML = compiledHtml;
 
-let hasVisited = sessionStorage.getItem('washere');
-const navBar = document.getElementById('navbar');
-if (!hasVisited ) {
-  sessionStorage.setItem('washere', true);
-} else {
-  navBar.classList.remove('washere');
-  navBar.style.opacity = '1';
-}
-
-
 window.requestAnimationFrame = window.requestAnimationFrame
 || window.mozRequestAnimationFrame
 || window.webkitRequestAnimationFrame
@@ -286,7 +276,16 @@ const next = document.getElementsByClassName('next');
 const prev = document.getElementsByClassName('prev');
 const videoBox = document.getElementById('videoBox');
 const footer = document.getElementById('footer');
+const navBar = document.getElementById('navbar');
+const closedNavHeight = navBar.offsetHeight; 
 
+let hasVisited = sessionStorage.getItem('washere');
+if (!hasVisited ) {
+  sessionStorage.setItem('washere', true);
+} else {
+  navBar.classList.remove('washere');
+  navBar.style.opacity = '1';
+}
 
 // Get the modal elements
 var modal = document.getElementById("myModal");
@@ -734,7 +733,6 @@ function slidePlus (num, index) {
 
   function easeInOutElastic(x) {
     const c5 = (2 * Math.PI) / 4.5;
-    
     return x === 0
       ? 0
       : x === 1
@@ -950,16 +948,19 @@ function scrollAnchors(e, respond = null) {
   let prevTime = 0; 
   let currentLapse;
   let refactor;
-  let navHeight;
   
-
-	let distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
-	e.preventDefault();
-	var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+  var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
 	const targetAnchor = document.querySelector(targetID);
 	if (!targetAnchor) return;
-  const navContent = document.getElementById('navbarSupportedContent');
-  navHeight = navContent.offsetHeight;
+	let distanceToTop = el => {
+    if (navBar.classList.contains('sticky-top') && targetAnchor !== navBar) {
+      return Math.floor(el.getBoundingClientRect().top - closedNavHeight);
+    } else {
+      return Math.floor(el.getBoundingClientRect().top); 
+      }
+  }
+	e.preventDefault();
+  console.log(closedNavHeight);
   scrollDist = distanceToTop(targetAnchor); 
   const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
   maxScrollDist < scrollDist ? scrollDist = maxScrollDist : scrollDist = scrollDist;
@@ -976,11 +977,11 @@ function scrollAnchors(e, respond = null) {
     prevTime = timestamp;
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
-    if (dist === undefined) {dist = scrollDist
-      scrollDist > 0? dist = scrollDist + 55: dist = scrollDist - 35;
+    if (dist === undefined) {
+      scrollDist > 0? dist = scrollDist + closedNavHeight : dist = scrollDist - closedNavHeight;
     };
     if (progress === undefined) {progress = 0};
-    const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4))+300, 300); 
+    const scrollDuration = Math.max(Math.abs(Math.floor(dist/2.4))+200, 300); 
     let elapsed = timestamp - start;
     prevTime? currentLapse = timestamp - prevTime : currentLapse = 15 ; 
     if (Math.abs(progress) < Math.abs(dist)) {
@@ -998,6 +999,7 @@ function scrollAnchors(e, respond = null) {
       left: 0,
     });
     progress += f;
+    console.log(currentLapse);
     dist>0? arrived = distanceToTop(targetAnchor) <= 0 : arrived = distanceToTop(targetAnchor) >= 0 ; 
     dist > 0? noMoreScroll = atBottom : noMoreScroll = atTop; 
     if (!arrived && !noMoreScroll) {
