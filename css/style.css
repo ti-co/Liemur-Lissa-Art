@@ -278,9 +278,6 @@ body {
   font-size: 0.75rem;
 }
 
-
-
-
 @keyframes aboutAppears {
   from {opacity: 0;}
   to {opacity: 1;}
@@ -388,6 +385,8 @@ footer .content {
 
     #about-text {
       display: flex;
+      font-size: 1.2rem;
+      width: 110%;
     }
 
     .videoPage{
@@ -494,4 +493,7 @@ footer .content {
       height: 100%;
     }
 
+    #about-text {
+      font-size: 1.1rem;
+    }
 }

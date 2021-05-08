@@ -15,6 +15,38 @@ const context = {
       medium: 'framed canvas'
     }, 
     {
+      image: "./resources/horizontalPaintings/originoriginal.jpg", 
+      title: 'Origin',
+      artist: 'Liemur Lissa',
+      date: '2020', 
+      location: 'Dominican Republic',
+      sizeInCm: ' 60 * 50 cm', 
+      sizeInInch: `23.6" * 19.7"`,
+      materials: 'oil',
+      medium: 'framed canvas'
+    },{
+      image: "./resources/horizontalPaintings/originoriginal90.jpg", 
+      title: 'Origin',
+      artist: 'Liemur Lissa',
+      date: '2020', 
+      location: 'Dominican Republic',
+      sizeInCm: ' 60 * 50 cm', 
+      sizeInInch: `23.6" * 19.7"`,
+      materials: 'oil',
+      medium: 'framed canvas'
+    },
+    {
+      image: "./resources/horizontalPaintings/originsmall100.jpg", 
+      title: 'Origin',
+      artist: 'Liemur Lissa',
+      date: '2020', 
+      location: 'Dominican Republic',
+      sizeInCm: ' 60 * 50 cm', 
+      sizeInInch: `23.6" * 19.7"`,
+      materials: 'oil',
+      medium: 'framed canvas'
+    },
+    {
       image: "./resources/horizontalPaintings/buenhombre.jpg", 
       title: 'Buen Hombre',
       artist: 'Liemur Lissa',
@@ -578,7 +610,17 @@ const setSliderWidth = () => {
     backwards[0].style.marginLeft = `-${spaceLeft}px`;
   };
 
-  if (x.matches){
+  if (y.matches) {
+    logo.style.marginLeft = '';
+    const navbarNav = document.getElementById('navbar-nav');
+    navbarNav.style.marginRight = '';
+    const sliderTitels = document.getElementsByClassName('sliderTitle');
+    for (let i=0; i<q; i++) {
+      sliderTitels[i].style.marginLeft = '';
+    };
+    videoBox.style.width = '';
+    videoBox.style.marginLeft = ''; 
+  } else {
     const logo = document.getElementById('logoInNavbar');
     let spaceLeft = logo.getBoundingClientRect().x; 
     logo.style.marginLeft = `${widthLeft + 6 - spaceLeft}px`;
@@ -596,17 +638,7 @@ const setSliderWidth = () => {
 
     videoBox.style.width = `${positionSlideFive - widthLeft - 12}px`;
     spaceLeft = videoBox.getBoundingClientRect().x
-    videoBox.style.marginLeft = `${widthLeft + 8 - spaceLeft}px`; 
-  } else {
-      logo.style.marginLeft = '';
-      const navbarNav = document.getElementById('navbar-nav');
-      navbarNav.style.marginRight = '';
-      const sliderTitels = document.getElementsByClassName('sliderTitle');
-      for (let i=0; i<q; i++) {
-        sliderTitels[i].style.marginLeft = '';
-      };
-      videoBox.style.width = '';
-      videoBox.style.marginLeft = ''; 
+    videoBox.style.marginLeft = `${widthLeft + 8 - spaceLeft}px`;  
     }
 
   videoBox.style.height = `${videoBox.offsetWidth*0.5625}px`;
@@ -960,7 +992,6 @@ function scrollAnchors(e, respond = null) {
       }
   }
 	e.preventDefault();
-  console.log(closedNavHeight);
   scrollDist = distanceToTop(targetAnchor); 
   const maxScrollDist = footer.getBoundingClientRect().bottom - window.innerHeight + 35; 
   maxScrollDist < scrollDist ? scrollDist = maxScrollDist : scrollDist = scrollDist;
@@ -973,7 +1004,6 @@ function scrollAnchors(e, respond = null) {
     let atTop = window.pageYOffset <= 0; 
     let arrived;
     let noMoreScroll;
-
     prevTime = timestamp;
     timestamp = new Date().getTime();
     if (start === undefined) {start = timestamp};
@@ -999,7 +1029,6 @@ function scrollAnchors(e, respond = null) {
       left: 0,
     });
     progress += f;
-    console.log(currentLapse);
     dist>0? arrived = distanceToTop(targetAnchor) <= 0 : arrived = distanceToTop(targetAnchor) >= 0 ; 
     dist > 0? noMoreScroll = atBottom : noMoreScroll = atTop; 
     if (!arrived && !noMoreScroll) {
@@ -1010,8 +1039,6 @@ function scrollAnchors(e, respond = null) {
         dist = undefined;
         start = undefined;
         window.cancelAnimationFrame(scrollSmooth);
-        navHeight = 0;
-        console.log('completed');
       }   
   }
 
@@ -1021,4 +1048,17 @@ function scrollAnchors(e, respond = null) {
 }
 
 
-
+const showNavMenu = () => {
+  console.log(navBar.offsetHeight);
+ 
+  const navContent = document.getElementById('navbarSupportedContent');
+  navHeight = navContent.offsetHeight;
+  console.log(navHeight);
+  let spaceToBottom = navBar.getBoundingClientRect().bottom - window.innerHeight + 160
+  const navAtBottom = window.innerHeight - navBar.getBoundingClientRect().bottom <= 160;
+  if (navHeight === 0 && navAtBottom) {
+    setTimeout( () => {
+      window.scrollBy(0, spaceToBottom)
+    }, 120);
+  }
+}
