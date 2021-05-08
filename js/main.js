@@ -4,7 +4,7 @@ const template = Handlebars.compile(source);
 const context = { 
   paintings1: [
     {
-      image: "./resources/horizontalPaintings/origin.jpg", 
+      image: "./resources/horizontalPaintings/original70.jpg", 
       title: 'Origin',
       artist: 'Liemur Lissa',
       date: '2020', 
@@ -15,7 +15,7 @@ const context = {
       medium: 'framed canvas'
     }, 
     {
-      image: "./resources/horizontalPaintings/originoriginal.jpg", 
+      image: "./resources/horizontalPaintings/origin160070.jpg", 
       title: 'Origin',
       artist: 'Liemur Lissa',
       date: '2020', 
@@ -36,7 +36,7 @@ const context = {
       medium: 'framed canvas'
     },
     {
-      image: "./resources/horizontalPaintings/originsmall100.jpg", 
+      image: "./resources/horizontalPaintings/original.jpg", 
       title: 'Origin',
       artist: 'Liemur Lissa',
       date: '2020', 
