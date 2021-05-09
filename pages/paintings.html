@@ -15,8 +15,8 @@
     
       <div class="hb-paintings-wrapper">
         {{#each paintings1}}
-        <div id="{{this.ID}}" class="painting" style="height: 100vh; "> 
-          <div style='display: flex; width:100vw; height: 72vh; justify-content: space-around; align-items: flex-end' >
+        <div id="{{this.ID}}" class="painting" style="height: 100vh; display:flex; align-items: center; "> 
+          <div style='display: flex; width:100vw; height: 72vh; justify-content: space-around; align-items: flex-start' >
             <img style='width: auto; height: 100%; ;' src={{this.image}}>            
             <div class='infobox'>
               <h5>Specifications:<br>{{this.sizeInCm}}<br>{{this.sizeInInch}}<br>{{this.materials}}<br>{{this.medium}}</h5>
