@@ -172,7 +172,7 @@ const context = {
       nextID: 'index12'
     },
     {
-      image: "../resources/horizontalPaintings/whisper.jpg", 
+      image: "../resources/horizontalPaintings/whisper.JPG", 
       title: 'Whisper',
       artist: 'Liemur Lissa',
       date: '2021', 
