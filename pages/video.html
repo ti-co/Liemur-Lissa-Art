@@ -26,49 +26,49 @@
   <body style='background-color: black;'>
 
     
-    <div style="background-color: black;">
-      <!-- Navbar Component -->
-      <nav class="navbar navbar-expand-lg navbar-dark text-white sticky-top" style="background-color: black; display:fixed; border-bottom: solid; border-bottom-color: white;">
-        <a class="navbar-brand ml-1" href="../index.html">
-          <span id="logoInNavbar" style="color: white;" >Liemur Lissa Art</span>
-        </a>
-        <a class='mx-3' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
-          <i 
-          class='fa fa-instagram' 
-          aria-hidden="true" 
-          style='font-size: 24px; color: white; background-color: black; padding:1%'>
-          </i>
-        </a>
-        <a class='mx-3' href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
-          <i 
-          class='fa fa-youtube' 
-          aria-hidden="true" 
-          style='font-size: 24px; color: white; background-color: black; padding:1%'>
-          </i>
-        </a>
-       
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
     
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul id='navbar-nav' class="navbar-nav ml-auto">
-            <li class="nav-item ml-2">
-              <a class="nav-link" href="../index.html#top">Home</a>
-            </li>
-            <li class="nav-item ml-2">
-              <a class="nav-link" href="./paintings.html">Paintings</a>
-            </li>
-            <li class="nav-item ml-2  active">
-              <a class="nav-link" href="">Video<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ml-2">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div> 
-      </nav>  
-    </div>
+    <!-- Navbar Component -->
+    <nav id='navbar' class="navbar navbar-expand-lg navbar-dark text-white" style="background-color: black; display:fixed; border-bottom: solid; border-bottom-color: white;">
+      <a class="navbar-brand ml-1" href="../index.html">
+        <span id="logoInNavbar" style="color: white;" >Liemur Lissa Art</span>
+      </a>
+      <a class='mx-3' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
+        <i 
+        class='fa fa-instagram' 
+        aria-hidden="true" 
+        style='font-size: 24px; color: white; background-color: black; padding:1%'>
+        </i>
+      </a>
+      <a class='mx-3' href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
+        <i 
+        class='fa fa-youtube' 
+        aria-hidden="true" 
+        style='font-size: 24px; color: white; background-color: black; padding:1%'>
+        </i>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul id='navbar-nav' class="navbar-nav ml-auto">
+          <li class="nav-item ml-2">
+            <a class="nav-link" href="../index.html#top">Home</a>
+          </li>
+          <li class="nav-item ml-2">
+            <a class="nav-link" href="./paintings.html">Paintings</a>
+          </li>
+          <li class="nav-item ml-2  active">
+            <a class="nav-link" href="">Video<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ml-2">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div> 
+    </nav>  
+    
   
     
  
@@ -134,31 +134,53 @@
         </div>
       </div>
     </div>
-
-    
        
     <!-- Footer -->
-    <footer> 
-      <div class="content">
-        <div class="copyright">© 2020 Liemur Lissa Art, All Rights Reserved</div>
-        <div style="display: flex; width: 100%; justify-content: space-evenly;">
-          <a class='mx-3' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
-            <i 
-            class='fa fa-instagram fa-4x' 
-            aria-hidden="true" 
-            style=' color: white; background-color: black; padding:1%'>
-            </i>
-          </a>
-          <a class='mx-3' href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
-            <i 
-            class='fa fa-youtube fa-4x' 
-            aria-hidden="true" 
-            style='color: white; background-color: black; padding:1%'>
-            </i>
-          </a>
+    <footer
+        id="footer" 
+        class="container-fluid" 
+        style="background-color: black;">  
+      <div class="row justify-content-center">
+        <div class='col-12' style="display: flex; justify-content: center; align-items: flex-end; top: -2.8rem;">
+          <div>
+            <a href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
+              <i 
+              class='fa fa-instagram fa-3x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+          </div>  
+          <div class='mx-5 padding: 1%; text-white'>
+            <a href="#navbar" style="display: block; text-align: center;">
+              <i 
+              class='fa fa-angle-double-up fa-5x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+            <a href="#navbar" style="margin-bottom: 4rem; margin-top: -1rem; display: block; color: white; text-align: center;">back to top</a>
+            <a href="../index.html#jumbo" style=" display: block; padding-bottom: 20%; font-size: 1.1rem; color: white;  text-align: center; text-decoration-line: underline;">about me</a>
+          </div>
+          <div>
+            <a href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
+              <i 
+              class='fa fa-youtube fa-3x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+          </div>   
         </div>
-        <div>Made in BXL and Russia with️ ❤️</div>
-      </div> 
+        <div class='row justify-content-center'>
+          <div class='col-12' style="text-align: center; font-size: 0.9rem;">
+            <p class='text-white'> &copy; 2021 Liemur Lissa Art, All Rights Reserved</p>  
+          </div>
+          <div class='col-12 ' style="text-align: center; font-size: 0.8rem;">
+            <p class="text-white">Made with ❤️ in Antwerp, by <a href="https://ti-co.github.io/practice/" target='_blank'>ti-co</a></p> 
+          </div>  
+        </div> 
+      </div>
     </footer>
 
   
@@ -168,8 +190,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="./paintings.js" type="text/javascript" ></script>  
   </body>
-  
-  </html><!DOCTYPE html>
+</html><!DOCTYPE html>
   
       
   

@@ -15,7 +15,7 @@
 
         
       <div class='mt-3 ml-1'>
-        <h2 class="sliderTitle display-5" style="color: black">I love Snoopy</h2>
+        <h2 class="sliderTitle display-5" style="color: black">Landscape Paintings</h2>
       </div> 
       <div class='frameholder'> 
         <div class="button-wrap backwards prev" onclick="slidePlus(-4, 0)">
@@ -166,12 +166,12 @@
         <div class="text-white text-center" style='z-index: 99; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); width:100%; position: absolute; bottom: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;'>
           <span class='about' onclick="collapseAboutSection(event)" style='text-decoration:underline'>Read about me</span>
           <div id='about-text'>
-            <div style='width: 96%; margin: auto;'>
+            <div style='width: 90%; margin: auto;'>
               <p style='text-align:justify'>Born and raised in moscow - educated at Moscow State University. I'm a citizen of the world with close ties to Asia, Europe and Central America. Thailand is my paradise. I take life on earth as a gift.</p>         
               <p style='text-align: justify'>My paintings express my gratitude to this wonderful life. I find inspiration in natural elements: light, shadows, reflections and the movement of the Ocean. You will see the impressions of my travels reflected in my paintings and video footage.</p>
             </div>
           </div>
-          <div id='logo' style='display: block; color: RGB (244, 252, 255)'>
+          <div id='logo' style='display: block; color: c0c0c0'>
             <h2>LLogo</h2>
             <h1 style='font-size: large'>Liemur Lissa Art.</h1>
           </div>
@@ -312,7 +312,7 @@
               <div class="form-row my-2">
                 <textarea style="background-color: white; color: black; border:hidden" class="form-control" placeholder="Your message" rows=6 minlength=1 maxlength=500 name="message" required></textarea>
               </div>
-              <div class="form-row mt-1 mb-3 mb-md-5 mb-lg-4">
+              <div class="form-row mt-2 mb-5">
                 <button 
                   class="form-control  text-center text-white" 
                   style="background-color: black; border: solid thin white" 
@@ -326,7 +326,54 @@
     </div> 
        
     <!-- Footer -->
-    <footer id="footer"> 
+    <footer
+        id="footer" 
+        class="container-fluid" 
+        style="background-color: black;">  
+      <div class="row justify-content-center">
+        <div class='col-12' style="display: flex; justify-content: center; align-items: flex-end; top: -2.8rem;">
+          <div>
+            <a href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
+              <i 
+              class='fa fa-instagram fa-3x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+          </div>  
+          <div class='mx-5 padding: 1%; text-white'>
+            <a href="#toptop" style="display: block; text-align: center;">
+              <i 
+              class='fa fa-angle-double-up fa-5x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+            <a href="#toptop" style="margin-bottom: 4rem; margin-top: -1rem; display: block; color: white; text-align: center;">back to top</a>
+            <a href="#jumbo" style=" display: block; padding-bottom: 20%; font-size: 1.1rem; color: white;  text-align: center; text-decoration-line: underline;">about me</a>
+          </div>
+          <div>
+            <a href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
+              <i 
+              class='fa fa-youtube fa-3x' 
+              aria-hidden="true" 
+              style='color: white; background-color: black; padding:1%'>
+              </i>
+            </a>
+          </div>   
+        </div>
+        <div class='row justify-content-center'>
+          <div class='col-12' style="text-align: center; font-size: 0.9rem;">
+            <p class='text-white'> &copy; 2021 Liemur Lissa Art, All Rights Reserved</p>  
+          </div>
+          <div class='col-12 ' style="text-align: center; font-size: 0.8rem;">
+            <p class="text-white">Made with ❤️ in Antwerp, by <a href="https://ti-co.github.io/practice/" target='_blank'>ti-co</a></p> 
+          </div>  
+        </div> 
+      </div>  
+    </footer>
+
+    <footer > 
       <div class="content">
         <div class="copyright" style="width: 20%; margin-left: -2rem">© 2021 Liemur Lissa Art, All Rights Reserved</div>
         <div style="display: flex; width: 40%; justify-content: space-around;">
@@ -348,8 +395,7 @@
         <div style="width: 20%; margin-right: -2rem">Made in BXL and Russia with️ ❤️</div>
       </div> 
     </footer>
-
-  
+    
      <!-- Bootstrap's JavaScript Files -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -357,8 +403,7 @@
     <script src="./js/main.js" type="text/javascript" ></script>
     <script type="text/javascript"></script>  
   </body>
-  
-  </html><!DOCTYPE html>
+</html><!DOCTYPE html>
   
       
   

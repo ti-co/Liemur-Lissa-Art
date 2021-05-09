@@ -4,7 +4,6 @@ body {
     margin: 0%; 
     padding: 0%; 
 }
-
   
 * {
   box-sizing: border-box;
@@ -325,6 +324,49 @@ footer .content {
     height: auto;
 }
 
+.hb-paintings-wrapper {
+  margin-top: -29px; 
+  
+}
+
+.hb-paintings-wrapper h5 {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: black; 
+}
+
+.hb-paintings-wrapper hr {
+  color: black; 
+}
+
+.arrow {
+  -webkit-text-stroke: 1px white;
+ 
+}
+
+.hb-paintings-wrapper a {
+  color: black;
+  font-weight: thin; 
+}
+
+.infobox{
+  display: flex; 
+  height: 100%; 
+  flex-direction: column; 
+  justify-content: space-between;
+  
+}
+
+.noscroll {    
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none;
+} 
+
+.noscroll::-webkit-scrollbar {
+  display: none; 
+} 
+
+
 @media only screen and (min-width: 560px){
     .slide {
       width: 32%;  
@@ -341,11 +383,10 @@ footer .content {
     }
 
     .modal-content img {
-      padding: 1%;
-      background-color: black;
+      padding: 1%; 
       height: auto; 
       width: auto; 
-      max-width: 90%;
+      max-width: 72vw;
       min-width: 60%
     }
 
@@ -460,7 +501,8 @@ footer .content {
     }
 
     .modal-content img {
-      max-height: 96vh; 
+      max-height: 96vh;
+      max-width: 76vw;  
     }
 
     .modal-content h5 {

@@ -4,7 +4,7 @@ const template = Handlebars.compile(source);
 const context = { 
   paintings1: [
     {
-      image: "./resources/horizontalPaintings/original70.jpg", 
+      image: "./resources/horizontalPaintings/origin.jpg", 
       title: 'Origin',
       artist: 'Liemur Lissa',
       date: '2020', 
@@ -13,39 +13,7 @@ const context = {
       sizeInInch: `23.6" * 19.7"`,
       materials: 'oil',
       medium: 'framed canvas'
-    }, 
-    {
-      image: "./resources/horizontalPaintings/origin160070.jpg", 
-      title: 'Origin',
-      artist: 'Liemur Lissa',
-      date: '2020', 
-      location: 'Dominican Republic',
-      sizeInCm: ' 60 * 50 cm', 
-      sizeInInch: `23.6" * 19.7"`,
-      materials: 'oil',
-      medium: 'framed canvas'
-    },{
-      image: "./resources/horizontalPaintings/originoriginal90.jpg", 
-      title: 'Origin',
-      artist: 'Liemur Lissa',
-      date: '2020', 
-      location: 'Dominican Republic',
-      sizeInCm: ' 60 * 50 cm', 
-      sizeInInch: `23.6" * 19.7"`,
-      materials: 'oil',
-      medium: 'framed canvas'
-    },
-    {
-      image: "./resources/horizontalPaintings/original.jpg", 
-      title: 'Origin',
-      artist: 'Liemur Lissa',
-      date: '2020', 
-      location: 'Dominican Republic',
-      sizeInCm: ' 60 * 50 cm', 
-      sizeInInch: `23.6" * 19.7"`,
-      materials: 'oil',
-      medium: 'framed canvas'
-    },
+    },  
     {
       image: "./resources/horizontalPaintings/buenhombre.jpg", 
       title: 'Buen Hombre',
@@ -56,7 +24,7 @@ const context = {
       sizeInInch: `31.5" * 21.7"`, 
       materials: 'oil',
       medium: 'framed canvas'
-    }, 
+    },
     {
       image: "./resources/horizontalPaintings/timetogohome.jpg", 
       title: 'Time to go Home',
@@ -76,6 +44,17 @@ const context = {
       location: 'China',
       sizeInCm: '70 * 50 cm', 
       sizeInInch: `27.6" * 19.7"`,
+      materials: 'oil',
+      medium: 'framed canvas'   
+    },
+    {      
+      image: "./resources/horizontalPaintings/doubts.jpg", 
+      title: 'Eternal Doubt',
+      artist: 'Liemur Lissa',
+      date: '2021', 
+      location: 'Moscow',
+      sizeInCm: '80 * 60 cm', 
+      sizeInInch: `31.5" * 23.6"`,
       materials: 'oil',
       medium: 'framed canvas'   
     },
@@ -192,16 +171,16 @@ const context = {
   ],
   paintings2: [
     {
-      image: "./resources/verticalPaintings/lightinthedarkness.jpg", 
-      title: `Light in the Darkness`,
+      image: "./resources/verticalPaintings/streamoflights.jpg", 
+      title: `the Lightstream`,
       artist: 'Liemur Lissa',
-      date: '2020', 
+      date: '2021', 
       location: 'Moscow',
-      sizeInCm: '60 * 80 cm', 
-      sizeInInch: `23.6" * 31.5"`, 
+      sizeInCm: '50 * 70 cm', 
+      sizeInInch: `19.7" * 27.6"`, 
       materials: 'oil',
       medium: 'framed canvas'        
-      },
+    },
     {
       image: "./resources/verticalPaintings/roserouge.jpg", 
       title: 'Rose Rouge',
@@ -256,6 +235,17 @@ const context = {
       sizeInInch: `?" * ?"`,
       materials: 'oil?',
       medium: 'framed canvas?'
+    }, 
+    {
+      image: "./resources/verticalPaintings/lightinthedarkness.jpg", 
+      title: `Light in the Darkness`,
+      artist: 'Liemur Lissa',
+      date: '2020', 
+      location: 'Moscow',
+      sizeInCm: '60 * 80 cm', 
+      sizeInInch: `23.6" * 31.5"`, 
+      materials: 'oil',
+      medium: 'framed canvas'        
     }
   ],
   videos: [
@@ -408,8 +398,10 @@ function showSlides(slideIndex, cardIndex, slider, array) {
       slide.children[1].pause();
       const frame = videoBox.getElementsByTagName('iframe')[0];
       frame.src = card.iframeSrc;
+      const scrollDown = slider.children[slideIndex+1].offsetHeight; 
       const positionYVideo = slider.children[slideIndex+1].children[1].getBoundingClientRect().bottom + window.pageYOffset - 30; 
       window.scrollTo(0, positionYVideo);
+      console.log(positionYVideo);
       setTimeout( function() {
         frame.click();
         var event1 = new Event('touchstart');
@@ -963,8 +955,8 @@ const toggleNavButton = () => {
   }  
 }
 
-scrollTo();
-function scrollTo() {
+smoothScroll();
+function smoothScroll() {
 	var links = document.getElementsByTagName('a');
 	for (let i = 0; i < links.length; i++) {
 		const link = links[i];
