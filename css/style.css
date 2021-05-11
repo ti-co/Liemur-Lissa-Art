@@ -394,14 +394,15 @@ footer .content {
 .navbox .menu {
   display: flex; 
   color: black; 
-  font-size: 0.65rem; 
+  font-size: 0.85rem; 
   flex-direction: column; 
-  justify-content: space-evenly; 
+  justify-content: space-between; 
   align-items: center;
+  height: 4rem; 
 }
 
 .arrow {
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: 6px white;
 }
 
 .hb-paintings-wrapper a {
@@ -504,7 +505,7 @@ footer .content {
     }
     
     .navbox .menu {    
-      font-size: 0.7rem;
+      font-size: 0.85rem;
     }
 
     footer .content {
@@ -654,8 +655,9 @@ footer .content {
     }
     
     .navbox .menu {    
-      font-size: 0.65rem;
+      font-size: 0.7rem;
     }
+   
 }
 
 @media only screen and (min-width: 560px) and (max-width: 850px) and (orientation: landscape) {
