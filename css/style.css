@@ -653,7 +653,7 @@ footer .content {
     }
 }
 
-@media only screen and (min-device-width: 560px) and (orientation: landscape) {
+@media only screen and (min-width: 560px) and (max-width: 850px) and (orientation: landscape) {
   .infobox {
     display: none; 
   }
@@ -686,8 +686,8 @@ footer .content {
     margin: auto;  
   }
 
-
-
-
+  .margin-navbar {
+    margin-top: 10px; 
+  }
 }
 
