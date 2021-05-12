@@ -416,7 +416,7 @@ function showSlides(slideIndex, cardIndex, slider, array) {
     slide.children[1].children[1].innerHTML = 'Click the image to see more.';
     slide.addEventListener("click", function() {
       modalContent.children[0].children[0].innerHTML = card.title;
-      modalContent.children[1].children[0].src = array[cardIndex].image;
+      modalContent.children[1].children[0].children[0].src = array[cardIndex].image;
       modalContent.children[1].children[1].children[1].innerHTML = `${card.title}<br> by ${card.artist}<br>${card.date}<br>${card.location}`;
       modal.style.display = "flex";
       popup[0].innerHTML = `${card.title}<br>by ${card.artist}<br>${card.date}<br>${card.location}<br><br>${card.sizeInCm}<br>${card.sizeInInch}<br>${card.materials}<br>${card.medium}`;
@@ -927,7 +927,8 @@ const zoomCard = (j) => {
 };
 
 for (j=0; j < sliders.length; j++) {
-  if (frameholders[j].css.overflowX !== 'scroll') {
+  let overflow = window.getComputedStyle(frameholders[j]).overflowX; 
+  if (overflow !== 'scroll') {
     if (arrays[j].length > 4) {
       showButtons(j);
     };
