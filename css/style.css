@@ -156,6 +156,10 @@ html {
 .right {
     display: none;
     padding: 1.5% 0 1% 0;
+    min-width: 10rem; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center;
 }
 
 .modal-content h5 {
@@ -730,6 +734,10 @@ footer .content {
 
   .margin-navbar {
     margin-top: 10px; 
+  }
+  
+  hr {
+    width: 75vw; 
   }
 }
 

@@ -927,11 +927,12 @@ const zoomCard = (j) => {
 };
 
 for (j=0; j < sliders.length; j++) {
-  if (frameholders[j].style.overflowX !== 'scroll') {
+  if (frameholders[j].css.overflowX !== 'scroll') {
     if (arrays[j].length > 4) {
       showButtons(j);
     };
     zoomCard(j); 
+    console.log('Im zooming in on tablet too')
   }
   
 };
