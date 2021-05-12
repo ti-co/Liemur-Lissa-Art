@@ -134,6 +134,7 @@ html {
 
 /* Modal Content */
 .modal-content {
+    position: relative; 
     background-color: rgba(0,0,0,0);
     color: white;
     margin: auto;
@@ -404,7 +405,7 @@ footer .content {
   flex-direction: column; 
   justify-content: space-between; 
   align-items: center;
-  height: 4rem; 
+  height: 3.5rem; 
 }
 
 .arrow {
@@ -520,7 +521,7 @@ footer .content {
   }
 } 
 
-@media only screen and (max-width: 895px) {
+@media all and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio : 1.5) {
     
     .scroller {   
       -ms-overflow-style: none; /* IE, Edge */
@@ -637,7 +638,7 @@ footer .content {
       width: auto;
       height: 100%;
       max-height: 100%;
-      max-width: 75%; 
+      max-width: 100%; 
     }
     
     .painting-box.vertical img {
@@ -666,7 +667,35 @@ footer .content {
    
 }
 
-@media only screen and (min-width: 560px) and (max-width: 850px) and (orientation: landscape) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 1.5) {
+    .painting-box.horizontal {
+      display: flex;
+      flex-direction: row;  
+      width: 100vw; 
+      margin-left: 3%; 
+      height: 68vh; 
+      justify-content: space-between;
+    }
+
+    .painting-box.horizontal img{
+      width: auto;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%; 
+    }
+
+    .infobox{
+     
+      height: 100%; 
+      width: 15%;
+      flex-direction: column; 
+      justify-content: space-between;
+      align-items: flex-start;   
+    }
+
+}
+
+@media only screen and (min-width: 560px) and (max-width: 895px) and (orientation: landscape) {
   .infobox {
     display: none; 
   }

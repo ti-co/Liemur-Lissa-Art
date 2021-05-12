@@ -927,10 +927,13 @@ const zoomCard = (j) => {
 };
 
 for (j=0; j < sliders.length; j++) {
-  if (arrays[j].length > 4) {
-    showButtons(j);
-  };
-  zoomCard(j);  
+  if (frameholders[j].style.overflowX !== 'scroll') {
+    if (arrays[j].length > 4) {
+      showButtons(j);
+    };
+    zoomCard(j); 
+  }
+  
 };
 
 const introvideo = document.getElementById('introvideo');
