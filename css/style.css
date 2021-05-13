@@ -249,19 +249,9 @@ html {
 }
 
 #introvideo {
-    display: flex; 
-    z-index: -99; 
-    width: auto;
-    height: 130vh;
-    margin-left: -300%;
-    margin-top: -120%;
- 
-}
-
-#introvideo iframe {
-    position: absolute;
-    height: 900; 
-    width: 1600; 
+  width: 275%; 
+  transform: scaleY(1.2); 
+  margin-left:-92%;
 }
 
 #logo { 
@@ -528,10 +518,9 @@ footer .content {
     }
 
     #introvideo {
-      width: auto; 
-      height: 130vh; 
-      margin-left: -150%;
-      margin-top: -30%;
+      width: 200%; 
+      transform: scaleY(1.25); 
+      margin-left:-50%;
     }
 
     #about-text {
@@ -563,11 +552,6 @@ footer .content {
       width: 640px; 
     }
     
-    
-
-
-   
-
     .infobox .specs-broken {
       display: block;
     }
@@ -665,20 +649,9 @@ footer .content {
     }
 
     #introvideo {
-      display: flex;
-      z-index: -99;
-      width: 140vw;
-      height: 0;
-      transform: scaleY(1);
-      transform: scaleX(1);
-      margin-left: -20vw;
-      margin-top: -25vh;
-      padding-bottom: 56.25%;  
-    }
-
-    #introvideo iframe {      
-      width: 100%;
-      height: 100%;
+      width: 115%;
+      margin-left: -15%;
+      margin-top:-12% 
     }
 
     #about-text {
@@ -687,16 +660,14 @@ footer .content {
 
     .painting-box.vertical {
       flex-direction: row;  
-      width: 94vw; 
-      margin-left: 3%; 
+      width: 94vw;  
       height: 96vh; 
       justify-content: space-between;
     }
     
     .painting-box.horizontal {
       flex-direction: row;  
-      width: 94vw; 
-      margin-left: 3%; 
+      width: 94vw;  
       height: 80vh; 
       justify-content: space-between;
     }
