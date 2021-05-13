@@ -13,74 +13,42 @@
     <script src="../handlebars.min.js"></script>
     <script id="paintingsTemp" type="text/x-handlebars-template">
     
-      <div class="mt-5">
+      <div>
         {{#each videos}}
-        <div class='my-5 videoPage'>
-          <iframe loading="lazy" src="{{this.iframeSrc}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div> 
+        <div id="{{this.ID}}" class='videoPage'>
+          <div class="video-content">
+            <div class="iframe-wrap">
+              <iframe loading="lazy" src="{{this.iframeSrc}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="info-nav-box">
+              <p>{{this.description}}</p>               
+            </div>
+            <div class='link-bar'>
+              <a class="video-arrow" href="#{{this.previousID}}"><i class="fa fa-long-arrow-up fa-3x"></i></a>
+              <div class='menu'>
+                <a href="../index.html#top">Home</a>
+                <a href="../index.html#jumbo">About Me</a>
+                <a href="#contact">Contact</a>
+              </div>
+              <a class="video-arrow" href="#{{this.nextID}}"><i class="fa fa-long-arrow-down fa-3x"></i></a>  
+            </div>
+          </div>  
+        </div>
+        <hr style="border: 2px solid white; width: 100vw"> 
         {{/each}}
-      </div>  
-        
+      </div>    
     </script>
   </head>
-  <body style='background-color: black;'>
-
-    
-    
-    <!-- Navbar Component -->
-    <nav id='navbar' class="navbar navbar-expand-lg navbar-dark text-white" style="background-color: black; display:fixed; border-bottom: solid; border-bottom-color: white;">
-      <a class="navbar-brand ml-1" href="../index.html">
-        <span id="logoInNavbar" style="color: white;" >Liemur Lissa</span>
-      </a>
-      <a class='mx-3' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
-        <i 
-        class='fa fa-instagram' 
-        aria-hidden="true" 
-        style='font-size: 24px; color: white; background-color: black; padding:1%'>
-        </i>
-      </a>
-      <a class='mx-3' href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
-        <i 
-        class='fa fa-youtube' 
-        aria-hidden="true" 
-        style='font-size: 24px; color: white; background-color: black; padding:1%'>
-        </i>
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul id='navbar-nav' class="navbar-nav ml-auto">
-          <li class="nav-item ml-2">
-            <a class="nav-link" href="../index.html#top">Home</a>
-          </li>
-          <li class="nav-item ml-2">
-            <a class="nav-link" href="./paintings.html">Paintings</a>
-          </li>
-          <li class="nav-item ml-2  active">
-            <a class="nav-link" href="">Video<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item ml-2">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div> 
-    </nav>  
-    
-  
-    
- 
+  <body class='noscroll' style='background-color: black;'>
 
     <div class='container-fluid'>  
       <div id='paintingsFrame'></div>
     </div>
 
-    <hr style="border: solid 2px white">
+   
       
     <!-- Contact form section -->
-    <div id='contact' class="mt-5 text-white" style="width: 112%; margin-left: -6%; background-color: black;">
+    <div id='contact' class="mt-5 text-white container-fluid" style="background-color: black;">
       <div class="row justify-content-center">
         <div class="col">
           <h2 class="display-4 text-white text-center my-2 my-md-5 mt-lg-5 mb-lg-1">Contact</h2>
@@ -154,7 +122,7 @@
             </a>
           </div>  
           <div class='mx-5 padding: 1%; text-white'>
-            <a href="#navbar" style="display: block; text-align: center;">
+            <a href="#vindex0" style="display: block; text-align: center;">
               <i 
               class='fa fa-angle-double-up fa-5x' 
               aria-hidden="true" 

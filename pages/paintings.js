@@ -231,7 +231,7 @@ const context = {
     },
     {
       image: "../resources/verticalPaintings/lightinthedarkness.jpg", 
-      title: `Light in the Darkness`,
+      title: `Light&Darkness`,
       artist: 'Liemur Lissa',
       date: '2020', 
       location: 'Moscow',
@@ -316,19 +316,39 @@ const context = {
   ],
   videos: [
     {
-      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM"
+      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM",
+      description: "Follow the Sun! Enjoy the magnificent sunset shoots and timelapses captured with Mavic Pro and GoPro during my travels.  *Music by Ben Böhmer - Little Lights.",
+      previousID: "vindex4", 
+      ID: 'vindex0', 
+      nextID: 'vindex1'
     },
     {
-      iframeSrc: "https://www.youtube.com/embed/AyH2CgOMSs0" 
+      iframeSrc: "https://www.youtube.com/embed/AyH2CgOMSs0", 
+      description: "Feel Thailand. In this video you will see the beautiful nature of Samui and Koh Phangan. Enjoy!",
+      previousID: "vindex0", 
+      ID: 'vindex1', 
+      nextID: 'vindex2' 
     },
     {
-      iframeSrc: "https://www.youtube.com/embed/Ph7jJ1j9tL8" 
+      iframeSrc: "https://www.youtube.com/embed/Ph7jJ1j9tL8", 
+      description: "Secret places on Koh Samui, Thailand Spring 2017.",
+      previousID: "vindex1", 
+      ID: 'vindex2', 
+      nextID: 'vindex3' 
     },
     {
-      iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc"
+      iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc", 
+      description: "Beautiful nature of China in winter. Guilin. Yangshuo. Longji Rice Terraces. River Lijiang. And a lot of different mountains. Enjoy our trip!",
+      previousID: "vindex2", 
+      ID: 'vindex3', 
+      nextID: 'vindex4'
     },
     {
-      iframeSrc: "https://www.youtube.com/embed/HV5GHrjlAKc"
+      iframeSrc: "https://www.youtube.com/embed/HV5GHrjlAKc", 
+      description: "You have never seen such incredible Thailand! In my movie you will visit places like Khao Sok, National parks, Doi Ithanon (the highest mountain in Thailand), Phu Chi Fa, Phangan, Chiangmai, Chiangrai and others. Enjoy!",
+      previousID: "vindex3", 
+      ID: 'vindex4', 
+      nextID: 'vindex0'
     }
   ]
 };
