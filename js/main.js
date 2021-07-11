@@ -251,28 +251,33 @@ const context = {
   videos: [
     {
       image: "./resources/video/sunpursuit.mp4",
-      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM?autoplay=1&VQ=HD1080&rel=0&modestbranding=1", 
-      posterImage: './resources/video/postersunpursuit2LR.jpg'
+      iframeSrc: "https://www.youtube.com/embed/rLTn3LWzRCM?autoplay=1&playsinline=1&VQ=HD1080&rel=0&modestbranding=1", 
+      posterImage: './resources/video/postersunpursuit2LR.jpg', 
+      videoID: 'rLTn3LWzRCM'
     },
     {
       image: "./resources/video/feelthailand.mp4", 
       iframeSrc: "https://www.youtube.com/embed/AyH2CgOMSs0?autoplay=1&VQ=HD1080&rel=0&modestbrand",
-      posterImage: "./resources/video/posterfeelThailand3.jpg" 
+      posterImage: "./resources/video/posterfeelThailand3.jpg", 
+      videoID: 'AyH2CgOMSs0' 
     },
     {
       image: "./resources/video/Samuimylove.mp4", 
       iframeSrc: "https://www.youtube.com/embed/Ph7jJ1j9tL8?autoplay=1&VQ=HD1080&rel=0&modestbrand",
-      posterImage: "./resources/video/posterSamuiLR.jpg" 
+      posterImage: "./resources/video/posterSamuiLR.jpg", 
+      videoID: 'Ph7jJ1j9tL8' 
     },
     {
       image: "./resources/video/WinterInChina.mp4",
       iframeSrc: "https://www.youtube.com/embed/_3oK7jU1MCc?autoplay=1&VQ=HD1080&rel=0&modestbrand", 
-      posterImage: "./resources/video/posterwinterinChina2LR.jpg"
+      posterImage: "./resources/video/posterwinterinChina2LR.jpg", 
+      videoID: '_3oK7jU1MCc' 
     },
     {
       image: "./resources/video/UnchartedThailand.mp4", 
       iframeSrc: "https://www.youtube.com/embed/HV5GHrjlAKc?autoplay=1&VQ=HD1080&rel=0&modestbrand",
-      posterImage: "./resources/video/posterThailandunchartedLR.jpg"
+      posterImage: "./resources/video/posterThailandunchartedLR.jpg", 
+      videoID: 'HV5GHrjlAKc'
     }
   ]
 };
@@ -299,7 +304,9 @@ const prev = document.getElementsByClassName('prev');
 const videoBox = document.getElementById('videoBox');
 const footer = document.getElementById('footer');
 const navBar = document.getElementById('navbar');
-const closedNavHeight = navBar.offsetHeight; 
+const closedNavHeight = navBar.offsetHeight;
+const introvideo = document.getElementById('introvideo'); 
+const playPauseButton = document.getElementById('play-pause-button');
 
 let hasVisited = sessionStorage.getItem('washere');
 if (!hasVisited ) {
@@ -308,6 +315,43 @@ if (!hasVisited ) {
   navBar.classList.remove('washere');
   navBar.style.opacity = '1';
 }
+
+//introvideo event listeners - functions for play and pause
+introvideo.onplaying = (event) => {
+  playPauseButton.children[0].style.display = 'none'; 
+  playPauseButton.children[1].style.display = '';
+}
+
+const introvideoPlay = () => {
+  introvideo.play(); 
+  playPauseButton.children[0].style.display = 'none'; 
+  playPauseButton.children[1].style.display = '';  
+}
+
+const introvideoPause = () => {
+  introvideo.pause();
+  playPauseButton.children[0].style.display = ''; 
+  playPauseButton.children[1].style.display = 'none';
+}
+
+document.addEventListener('scroll', function () {
+  if (isInViewport(introvideo)) {
+    introvideo.play(); 
+    playPauseButton.style.display = ''; 
+  } else {
+    introvideo.pause(); 
+    playPauseButton.style.display = 'none';
+  } 
+  }); 
+
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (    
+      rect.bottom > 300
+  );
+}
+
+
 
 // Get the modal elements
 var modal = document.getElementById("myModal");
@@ -321,12 +365,12 @@ const x = window.matchMedia("(min-width: 895px)");
 
 let start; 
 let dist;
-const duration = 1500; 
+const duration = 650; 
 let n = [];
 let m = []; 
 
-const arrays = [context.paintings1, context.paintings2, context.videos, context.paintings1]; 
-const heightRatios = [0.7, 1.35, 1.1625, 0.65]
+const arrays = [context.paintings1, context.paintings2, context.videos]; 
+const heightRatios = [0.7, 1.35, 1.1625]
 const indexes = [];
 
 
@@ -364,24 +408,83 @@ const setSlides = () => {
 };
 setSlides();
 
+
+
+let players = '';
+const nodes = []; 
+const createPlayer = (element, videoID, event) => {
+
+  // 3. This function creates an <iframe> (and YouTube player)
+   //    after the API code downloads.
+   onYouTubeIframeAPIReady = () => {
+     player = new YT.Player(element, {
+       height: 'auto',
+       width: '100%',
+       videoId: videoID,
+       playerVars: {'autoplay': 1, 'playsinline': 1, 'controls': 1 },
+       events: {
+         'onReady': onPlayerReady,
+         
+       }
+     });
+   }
+ 
+   // 4. The API will call this function when the video player is ready.
+   function onPlayerReady(event) {  
+     event.target.playVideo();
+     console.log('playerReady')
+   }
+   
+
+  // 2. This code loads the IFrame Player API code asynchronously.
+ 
+  if (players === '') {
+    console.log('hello script');
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    players = 44;
+  } else if (nodes.includes(element)) {
+    element.playVideo();
+    console.log('player exists')
+  } else {
+    nodes.push(element);
+    onYouTubeIframeAPIReady(); 
+    console.log('script exists')
+     
+    
+  }
+}
+  
+ 
+
 let timer;
 function showSlides(slideIndex, cardIndex, slider, array) {
   const slide = slider.children[slideIndex];
   const card = array[cardIndex];
   const videoButton = slide.getElementsByTagName('button')[0];
-  if (slide.children[1].tagName === 'VIDEO') {
-    slide.children[1].poster = card.posterImage;
-    slide.addEventListener("mouseenter", function() {  
+ 
+  if (slide.children[1].classList.contains('VIDEO')) {
+    slide.children[1].children[0].src = card.posterImage;
+    slide.addEventListener("mouseenter", function(e) {  
       if (document.fullscreenElement !== slide.children[1]) {
         timer = setTimeout ( function () {
-          slide.children[1].children[0].src = card.image;
-          slide.children[1].load();
-          slide.children[1].volume = 0.05;  
+          slide.children[1].children[0].style.display = 'none';
+          const players = document.getElementsByClassName('player');
+          const playerx = players[slideIndex];
+          videoID = card.videoID;
+          createPlayer(playerx, videoID, e)
         }, 500)
       }        
     });
     slide.addEventListener("mouseleave", function() {  
-      clearTimeout(timer);   
+      clearTimeout(timer);
+      slide.children[1].children[0].style.display = 'flex';
+      slide.children[1].children[1].style.display = 'none';
+     
+      
+            
     });
     videoButton.addEventListener('click', function() {
       if (!videoBox.children[1]) {
@@ -389,13 +492,14 @@ function showSlides(slideIndex, cardIndex, slider, array) {
         const iframe = document.createElement('iframe');
         videoBox.append(iframe);
         iframe.setAttribute("src","");
-        iframe.setAttribute("width","1920");
-        iframe.setAttribute("height","1080");
+        iframe.setAttribute("width","100%");
+        iframe.setAttribute("height","auto");
         iframe.setAttribute("frameborder","0");
+        iframe.setAttribute("playsinline", "1")
         iframe.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
         iframe.setAttribute("allowfullscreen","true");
       }
-      slide.children[1].pause();
+     
       const frame = videoBox.getElementsByTagName('iframe')[0];
       frame.src = card.iframeSrc;
       const scrollDown = slider.children[slideIndex+1].offsetHeight; 
@@ -456,8 +560,8 @@ window.onclick = function(event) {
 const collapseAboutSection = (e) => {
   e = e || window.event;
   var target = e.target || e.srcElement;
-  if (target.innerHTML === 'Read about me') {
-    target.innerHTML = 'Hide about me'; 
+  if (target.innerHTML === 'Read About Me') {
+    target.innerHTML = 'Hide About Me'; 
     target.nextElementSibling.style.display = 'flex';
     target.nextElementSibling.style.visibility = 'visible';
     if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
@@ -466,7 +570,7 @@ const collapseAboutSection = (e) => {
         target.nextElementSibling.style.width = '60%';
       }
     } else {
-    target.innerHTML = 'Read about me';
+    target.innerHTML = 'Read About Me';
     if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
       target.nextElementSibling.style.display = 'none';
       }
@@ -475,6 +579,29 @@ const collapseAboutSection = (e) => {
   }
 }
 
+const aboutMe = document.getElementById('about-text');
+const displayAboutMe = () => {
+  if (aboutMe.previousElementSibling.innerHTML === 'Read About Me') {
+    aboutMe.previousElementSibling.innerHTML = 'Hide About Me'
+    aboutMe.style.display = 'flex';
+    aboutMe.style.visibility = 'visible';
+    if (!z.matches || y.matches&&window.innerWidth > window.innerHeight) {
+      document.getElementById('logo').style.display = 'none'
+      } else {
+        aboutMe.style.width = '60%';
+      }
+  } else {
+    return;
+  }
+}
+
+let clickedAboutMe = sessionStorage.getItem('clickedAboutMe');
+  if (clickedAboutMe) {
+    displayAboutMe();
+    setTimeout( () => {
+      sessionStorage.removeItem('clickedAboutMe');
+    }, 1500)
+  } 
 
 function switchSlides(num, slindex, slider, array) {
   let slides = slider.getElementsByClassName('slide');
@@ -582,7 +709,7 @@ const setSliderWidth = () => {
     let slideHeight = slideWidth*heightRatios[i];
     let cards = sliders[i].getElementsByClassName('card');
     for (let j = 0; j < cards.length; j++) {
-      if (cards[j].children[1].tagName === 'VIDEO') {
+      if (cards[j].children[1].classList.contains('VIDEO')) {
         cards[j].children[1].style.height = `${slideHeight}px`; 
       } else {
         cards[j].children[0].style.height = `${slideHeight}px`; 
@@ -603,6 +730,7 @@ const setSliderWidth = () => {
   };
 
   if (y.matches) {
+    const logo = document.getElementById('logoInNavbar');
     logo.style.marginLeft = '';
     const navbarNav = document.getElementById('navbar-nav');
     navbarNav.style.marginRight = '';
@@ -616,6 +744,7 @@ const setSliderWidth = () => {
     const logo = document.getElementById('logoInNavbar');
     let spaceLeft = logo.getBoundingClientRect().x; 
     logo.style.marginLeft = `${widthLeft + 6 - spaceLeft}px`;
+    playPauseButton.style.marginLeft = `${widthLeft + 6 - spaceLeft}px`;
 
     const navbarNav = document.getElementById('navbar-nav');
     let spaceRight = navbarNav.getBoundingClientRect().right;
@@ -672,7 +801,7 @@ function slidePlus (num, index) {
   let l = 10;
   const slindex = indexes[index];
   const prevButton = prev[index];
-  if (slider.children[0].children[1].tagName === 'VIDEO'){
+  if (slider.children[0].children[1].id === 'VIDEO'){
     if ( n[index] === 0) {
       slider.children[5].children[1].removeAttribute('controls');
     }
@@ -715,17 +844,10 @@ function slidePlus (num, index) {
   } else {
     return
   }
-
-  const easeOut = progress => Math.pow(--progress, 1) + 1;
-  
-  function easeInOut(x) {
-    return x === 0
-    ? 0
-    : x === 1
-    ? 1
-    : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2
-    : (2 - Math.pow(2, -20 * x + 10)) / 2;
-    }
+ 
+  function easeOutQuint(x) {
+    return 1 - Math.pow(1 - x, 5);
+  }
 
   function slideRight(num) {
     timestamp = new Date().getTime();
@@ -735,7 +857,7 @@ function slidePlus (num, index) {
     const f = Math.abs(dist/duration);
     let elapsed = timestamp - start;
     let progress = elapsed/duration;
-    const easing = easeInOut(progress);
+    const easing = easeOutQuint(progress);
     const refactor = easing*f;
     slider.style.transform = 'translateX(-' + Math.min(refactor*elapsed, dist) + "%)";
     if (elapsed < duration) {
@@ -749,22 +871,11 @@ function slidePlus (num, index) {
       slider.style.position = 'relative';
       slider.children[0].style.visibility = 'visible';
       m[index] ++;
-      if (slider.children[0].children[1].tagName === 'VIDEO') {
+      if (cards[j].children[1].classList.contains('VIDEO')) {
         slider.children[5].children[1].setAttribute('controls', true);
       }
     };
   }
-
-  function easeInOutElastic(x) {
-    const c5 = (2 * Math.PI) / 4.5;
-    return x === 0
-      ? 0
-      : x === 1
-      ? 1
-      : x < 0.5
-      ? -(Math.pow(2, 20 * x - 10) * Math.sin((20 * x - 11.125) * c5)) / 2
-      : (Math.pow(2, -20 * x + 10) * Math.sin((20 * x - 11.125) * c5)) / 2 + 1;
-    }
 
   function slideLeft(num) {
     timestamp = new Date().getTime();
@@ -774,7 +885,7 @@ function slidePlus (num, index) {
     const f = Math.abs(dist/duration);
     let elapsed = timestamp - start;
     let progress = elapsed/duration;
-    const easing = easeInOutElastic(progress);
+    const easing = easeOutQuint(progress);
     const refactor = easing*f;
     slider.style.transform = 'translateX(' + Math.min(dist+(refactor*elapsed), 0) + "%)";
     if (elapsed < duration) {
@@ -832,9 +943,9 @@ const zoomCard = (j) => {
     let _this = coll[i];
     let content = coll[i].children[1];
     
-    if (y.matches && _this.children[1].tagName === 'VIDEO') {
+    if (y.matches && _this.children[1].classList.contains('VIDEO')) {
       const video = _this.children[1];
-      video.addEventListener("playing", function() { 
+      video.addEventListener("mouseenter", function() { 
       _this.children[0].classList.add('entered');
       });
     } else if (x.matches) {
@@ -871,15 +982,14 @@ const zoomCard = (j) => {
       const zoom = () => {
         _this.style.zIndex = '100001';
         sliders[j].style.zIndex = '100001';
-        if (_this.children[1].tagName !== 'VIDEO') {
+        if (!_this.children[1].classList.contains('VIDEO')) {
           content.style.display = "block";
           _this.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
           _this.children[0].style.height = 'auto';
           _this.style.transition = 'transform 800ms ease-out 20ms';
           _this.style.transform = 'scale(1.3)';  
-        } else if (_this.children[1].tagName === 'VIDEO' && document.fullscreenElement !== _this.children[1]) {
+        } else if (_this.children[1].classList.contains('VIDEO') && document.fullscreenElement !== _this.children[1]) {
           _this.children[0].classList.add('entered');
-          _this.children[1].play();
           _this.style.transition = 'transform 800ms ease-out 20ms';
           _this.style.transform = 'scaleX(2.02) scaleY(1.72)';  
         }
@@ -893,7 +1003,7 @@ const zoomCard = (j) => {
 
       _this.addEventListener("mouseleave", function() {
         clearTimeout(timer);
-        if (_this.children[1].tagName !== 'VIDEO') {
+        if (!_this.children[1].classList.contains('VIDEO')) {
           content.style.display = "none";
           _this.style.backgroundColor = "white"
           let slideWidth = _this.offsetWidth;
@@ -909,12 +1019,12 @@ const zoomCard = (j) => {
         prev[j].style.visibility = 'hidden';
         prev[j].style.opacity = '0';
         next[j].style.opacity = '0';
-        if (_this.children[1].tagName === 'VIDEO') {
+        if (_this.children[1].classList.contains('VIDEO')) {
           if (document.fullscreenElement) {
             return
           } else {
-            _this.children[1].pause();
-            _this.children[1].load();
+            _this.children[0].classList.remove('entered');
+            
             _this.children[1].removeAttribute('controls');
             setTimeout( function () {
               _this.children[1].setAttribute('controls', true);
@@ -933,25 +1043,8 @@ for (j=0; j < sliders.length; j++) {
       showButtons(j);
     };
     zoomCard(j); 
-    console.log('Im zooming in on tablet too')
-  }
-  
+  }  
 };
-
-const introvideo = document.getElementById('introvideo');
-document.addEventListener('scroll', function () {
-  isInViewport(introvideo) ? player.playVideo() : player.pauseVideo();
-  }); 
-
-
-
-function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return (    
-      rect.bottom > -80
-  );
-}
-
 
 const toggleNavButton = () => {
   if (y.matches) {
@@ -1046,11 +1139,8 @@ function scrollAnchors(e, respond = null) {
 
 
 const showNavMenu = () => {
-  console.log(navBar.offsetHeight);
- 
   const navContent = document.getElementById('navbarSupportedContent');
   navHeight = navContent.offsetHeight;
-  console.log(navHeight);
   let spaceToBottom = navBar.getBoundingClientRect().bottom - window.innerHeight + 160
   const navAtBottom = window.innerHeight - navBar.getBoundingClientRect().bottom <= 160;
   if (navHeight === 0 && navAtBottom) {
@@ -1060,37 +1150,20 @@ const showNavMenu = () => {
   }
 }
 
+const formControls = document.getElementsByClassName('form-control');
+const emptyForm = () => {
+  let i = 0;
+  setTimeout(() => {
+    for (i=0; i<formControls.length-1; i++) {
+      formControls[i].value = formControls[i].placeholder;
+    }
+  }, 1000) 
+}
 
 
 
 
-    // 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '1080',
-      width: '1920',
-      videoId: 'z2IILu9eaFc?VQ=HD1080&rel=0',
-      playerVars: {'VQ': 'HD1080', 'autoplay': 1, 'playsinline': 1, 'loop': 1, 'playlist': 'z2IILu9eaFc', 'controls':1 },
-      events: {
-        'onReady': onPlayerReady,
-      }
-    });
-  }
-
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    event.target.mute();
-    event.target.playVideo();
-  }
+  
 
 
 

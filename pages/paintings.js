@@ -358,6 +358,14 @@ const displayPaintingsFrame = document.getElementById('paintingsFrame');
 displayPaintingsFrame.innerHTML = compiledHtml;
 
 
+const displayAboutMe = () => {
+  sessionStorage.setItem('clickedAboutMe', true);
+  console.log('clicked')
+  
+} 
+
+
+
 smoothScroll();
 function smoothScroll() {
 	var links = document.getElementsByTagName('a');

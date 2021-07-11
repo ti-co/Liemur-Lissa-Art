@@ -28,7 +28,7 @@
           {{#each paintings1}}
       	  <div class="card slide">
             <div class="image-wrapper" style="display: flex;">
-              <img src={{this.image}} class="card-img-top" loading="lazy" alt="">
+              <img src={{this.image}} class="card-img-top" alt="">
             </div> 
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
@@ -37,9 +37,7 @@
           </div>
           {{/each}}
         </div> 
-      </div>
-
-        
+      </div> 
       <div class='mt-3 ml-1'>
         <h2 class="sliderTitle display-5" style="color: black">Vertical Paintings</h2>
       </div> 
@@ -54,7 +52,7 @@
           {{#each paintings2}}
       	  <div class="card slide">
             <div class="image-wrapper" style="display: flex;">
-              <img src={{this.image}} class="card-img-top" loading="lazy" alt="" >
+              <img src={{this.image}} class="card-img-top" alt="" >
             </div> 
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
@@ -81,10 +79,11 @@
             <div id='anim' style='position: absolute; display: flex; align-items: center; justify-content: center; width:100%; height:25%; top: 0'>
               <button type='button' class="btn" style='position:relative; border: solid 1px white; font-size:0.8rem; height:auto; background-color: black; color: white'><span> <i class="fa fa-play" style="font-size: 0.9rem;"></i> &nbsp; Watch Full Video  </span> </button>
             </div>
-            <video width="100%" height="auto" style="background-color: black; display: flex; align-items:stretch; justify-content: center;" controls allowfullscreen preload="none" poster="">
-              <source type="video/mp4" src="" loading="lazy">
-            Your browser does not support the video tag.
-            </video>
+            <div class='VIDEO' style="background-color: black; display: flex; flex-direction: column; justify-content: center;">
+              <img src="" width="100%" height="" style="display: flex; background-color: black; align-items:stretch; justify-content: center;">
+              <div class="player"></div> 
+            </div>
+            
             <div class="card-body text-white" style='display: none;'>
               <p class="card-text">{{this.title}}</p>
               <p class="card-text"></p>
@@ -93,35 +92,8 @@
           {{/each}}
         </div> 
       </div>
-
       <div id='videoBox' class='my-5 videoBox'>
         <img src="resources/video/posterThailandunchartedLR_big.jpg">
-        <div id=player></div>
-      </div>
-      
-      <div class='mt-3 ml-1'>
-        <h2 class="sliderTitle display-5" style="color:black">Horizontal Paintings</h2>
-      </div> 
-      <div class='frameholder'> 
-        <div class="button-wrap backwards prev" onclick="slidePlus(-4, 3)">
-          <span>❮</span>
-        </div>
-        <div class="button-wrap forwards next" onclick="slidePlus(4, 3)">
-          <span>❯</span>  
-        </div>
-        <div id='3' class="d-flex slider" style="flex-wrap: nowrap; align-items: flex-start">
-          {{#each paintings1}}
-      	  <div class="card slide" style="border: 1px solid black">
-            <div class="image-wrapper" style="display: flex; border: 1px solid black">
-              <img src={{this.image}} class="card-img-top" loading="lazy" alt="">
-            </div> 
-            <div class="card-body text-white" style='display: none;'>
-              <p class="card-text">{{this.title}}</p>
-              <p class="card-text">Click to see more</p>
-            </div>
-          </div>
-          {{/each}}
-        </div> 
       </div>
     </script>
   </head>
@@ -129,19 +101,19 @@
 
     <div id='jumbo' class="jumbotron jumbotron-fluid mb-0" style="width:100%; position: relative; overflow:hidden; background-color: rgba(0,0,0);">
       <div class="text-white text-center">
-        <video id="introvideo" autoplay muted loop playsinline allowfullscreen preload="auto">
+        <video id="introvideo" poster="resources/poster_jumbo.jpg" autoplay muted loop playsinline allowfullscreen preload="auto">
           <source src="./resources/video/sunpursuitbg.mp4" type="video/mp4">
         Your browser does not support the video tag.
         </video>
         <div class="text-white text-center" style='z-index: 1000; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); width:100%; position: absolute; bottom: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;'>
-          <span class='about' onclick="collapseAboutSection(event)" style='text-decoration:underline'>Read about me</span>
+          <span class='about' onclick="collapseAboutSection(event)" style='text-decoration:underline'>Read About Me</span>
           <div id='about-text'>
             <div style='width: 90%; margin: auto;'>
               <p style='text-align:justify'>Born and raised in moscow - educated at Moscow State University. I'm a citizen of the world with close ties to Asia, Europe and Central America. Thailand is my paradise. I take life on earth as a gift.</p>         
               <p style='text-align: justify'>My paintings express my gratitude to this wonderful life. I find inspiration in natural elements: light, shadows, reflections and the movement of the Ocean. You will see the impressions of my travels reflected in my paintings and video footage.</p>
             </div>
           </div>
-          <div id='logo' style='display: block; width: 60%; color: c0c0c0'>
+          <div id='logo' style='display: block; width: 60%; color: white'>
             <img src="./resources/LL wwhite logo.png" style="max-width: 100%" alt="logo Liemur Lissa">
           </div>
           <div class='animationThree'>
@@ -151,16 +123,18 @@
             </a>
           </div>
         </div>  
+        <div id="play-pause-button" style="position: absolute; bottom: 1rem; left: 1rem; z-index: 1001; color: white;">
+          <i class="ml-2 fa fa-play fa-lg" onclick="introvideoPlay()" aria-hidden="true"></i>
+          <i class="ml-2 fa fa-pause fa-lg" onclick="introvideoPause()" style="display: none" aria-hidden="true"></i>
+        </div>
       </div> 
     </div>
-
     <div id="toptop" style="position: relative; bottom: -58px;"></div> 
-
     <div id='top' class="sticky-top" style="background-color: black;">
       <!-- Navbar Component -->
       <nav id="navbar" class="navbar washere navbar-expand-lg navbar-dark text-white sticky-top" style="background-color:black; border-bottom: 2px solid white;">
         <a class="navbar-brand ml-1" href="">
-          <span id="logoInNavbar"><img src="./resources/LL wwhite logo.png" style="width: 30%" alt="logo Liemur Lissa Art">Art</span>
+          <span id="logoInNavbar">Liemur Lissa Art</span>
         </a>
         <a class='mx-lg-5' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
           <i 
@@ -176,11 +150,9 @@
           style='font-size: 24px; color: white; background-color: black; padding:1%'>
           </i>
         </a>
-       
         <button id="navbutton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span onclick="showNavMenu()" class="navbar-toggler-icon"></span>
         </button>
-    
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul id='navbar-nav' class="navbar-nav ml-auto">
             <li class="nav-item ml-2 active" onclick="toggleNavButton()">
@@ -196,13 +168,9 @@
               <a class="nav-link scroll-smooth" href="#contact" >Contact</a>
             </li>
           </ul>
-        </div>
-        
+        </div> 
       </nav>  
     </div>
-  
-    
- 
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
@@ -232,11 +200,9 @@
         </div>
       </div>
     </div>
-
     <div class='container-fluid' style='overflow: hidden;'>  
       <!--sliders section with JS and handlebars (see script on top of html)-->
       <div id='frame'></div>
-      
       <!-- Contact form section -->
       <div id='contact' class="mt-5 text-white" style="width: 112%; margin-left: -6%; background-color: black;">
         <div class="row justify-content-center">
@@ -250,12 +216,13 @@
             </div>
           </div>
         </div>
-    
         <div class="row justify-content-center mt-3">
           <div class="col-10 col-md-8 col-lg-6 mb-1">
             <form
               action="https://formspree.io/f/mnqorpeb"
               method="POST"
+              target='_blank'
+              onsubmit="emptyForm()"
             >
               <div class="form-row my-2">
                 <input 
@@ -281,7 +248,10 @@
                 />
               </div>
               <div class="form-row my-2">
-                <textarea style="background-color: white; color: black; border:hidden" class="form-control" placeholder="Your message" rows=6 minlength=1 maxlength=500 name="message" required></textarea>
+                <textarea style="background-color: white; color: black; border:hidden" 
+                class="form-control" 
+                placeholder="Your message" 
+                rows=6 minlength=1 maxlength=500 name="message" required></textarea>
               </div>
               <div class="form-row mt-2 mb-5">
                 <button 
@@ -295,7 +265,6 @@
         </div>
       </div>
     </div> 
-       
     <!-- Footer -->
     <footer
         id="footer" 
@@ -320,8 +289,10 @@
               style='color: white; background-color: black; padding:1%'>
               </i>
             </a>
-            <a href="#toptop" style="margin-bottom: 2rem; margin-top: -1rem; display: block; color: white; text-align: center;">back to top</a>
-            <a href="#jumbo" style=" display: block; padding-bottom: 20%; font-size: 1.1rem; color: white;  text-align: center; text-decoration-line: underline;">about me</a>
+            <a href="#toptop" style="margin-bottom: 2rem; margin-top: -1rem; display: block; color: white; text-align: center;">Back to Top</a>
+            <span onclick="displayAboutMe()">
+              <a href="#jumbo" style=" display: block; padding-bottom: 20%; font-size: 1.1rem; color: white;  text-align: center; text-decoration-line: underline;">About Me</a>
+            </span>
           </div>
           <div>
             <a href="https://www.youtube.com/channel/UCe3KxHjD9XYvIpsMcLZFN9g" target='_blank'>
@@ -346,8 +317,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <script src="./js/main.js" type="text/javascript" ></script>
-    <script type="text/javascript"></script>  
+    <script src="./js/main.js" type="text/javascript" ></script>  
   </body>
 </html><!DOCTYPE html>
   
