@@ -651,7 +651,9 @@ footer .content {
     #introvideo {
       width: 115%;
       margin-left: -15%;
-      margin-top:-12% 
+      transform: scaleY(1);
+      margin-top: -20%;
+      z-index: -100; 
     }
 
     #about-text {

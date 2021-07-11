@@ -129,14 +129,11 @@
 
     <div id='jumbo' class="jumbotron jumbotron-fluid mb-0" style="width:100%; position: relative; overflow:hidden; background-color: rgba(0,0,0);">
       <div class="text-white text-center">
-        <video id="introvideo" autoplay muted loop allowfullscreen preload="none">
+        <video id="introvideo" autoplay muted loop playsinline allowfullscreen preload="auto">
           <source src="./resources/video/sunpursuitbg.mp4" type="video/mp4">
         Your browser does not support the video tag.
         </video>
-
-      
-
-        <div class="text-white text-center" style='z-index: 99; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); width:100%; position: absolute; bottom: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;'>
+        <div class="text-white text-center" style='z-index: 1000; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); width:100%; position: absolute; bottom: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-around; align-items: center;'>
           <span class='about' onclick="collapseAboutSection(event)" style='text-decoration:underline'>Read about me</span>
           <div id='about-text'>
             <div style='width: 90%; margin: auto;'>
@@ -144,9 +141,8 @@
               <p style='text-align: justify'>My paintings express my gratitude to this wonderful life. I find inspiration in natural elements: light, shadows, reflections and the movement of the Ocean. You will see the impressions of my travels reflected in my paintings and video footage.</p>
             </div>
           </div>
-          <div id='logo' style='display: block; color: c0c0c0'>
-            <h2>LLogo</h2>
-            <h1 style='font-size: large'>Liemur Lissa Art.</h1>
+          <div id='logo' style='display: block; width: 60%; color: c0c0c0'>
+            <img src="./resources/LL wwhite logo.png" style="max-width: 100%" alt="logo Liemur Lissa">
           </div>
           <div class='animationThree'>
             <a href='#navbar' style="color:white; position:relative; top: 0.5rem;">
@@ -164,7 +160,7 @@
       <!-- Navbar Component -->
       <nav id="navbar" class="navbar washere navbar-expand-lg navbar-dark text-white sticky-top" style="background-color:black; border-bottom: 2px solid white;">
         <a class="navbar-brand ml-1" href="">
-          <span id="logoInNavbar" style="color: white;" >Liemur Lissa</span>
+          <span id="logoInNavbar"><img src="./resources/LL wwhite logo.png" style="width: 30%" alt="logo Liemur Lissa Art">Art</span>
         </a>
         <a class='mx-lg-5' href="https://www.instagram.com/liemur.lissa.art/" target='_blank'>
           <i 
